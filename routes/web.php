@@ -19,6 +19,10 @@ Route::get('/sobrenos', 'SobreNosController@sobreNos');
 
 Route::get('/contato', 'ContatoController@contato');
 
+Route::get('/contato/{nome}/{idade}/{trabalho?}', function(string $nome, int $idade, string $trabalho = 'desempregado') {
+    echo "Estamos aqui, $nome. Sabemos também que voce tem $idade anos e trabalha como $trabalho";
+});
+
 /*
 Verbos http
 

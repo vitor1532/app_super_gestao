@@ -13,16 +13,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PrincipalController@principal');
+Route::get('/', 'PrincipalController@principal')->name('site.index');
 
-Route::get('/sobrenos', 'SobreNosController@sobreNos');
+Route::get('/sobreNos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 
-Route::get('/contato', 'ContatoController@contato');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 
-Route::get('/contato/{nome}/{idade}/{trabalho?}', function(string $nome, int $idade, string $trabalho = 'desempregado') {
-    echo "Estamos aqui, $nome. Sabemos também que voce tem $idade anos e trabalha como $trabalho";
+Route::get('/login', function() {return 'Login';})->name('site.login');
+
+//App
+Route::prefix('/app')->group(function() {
+    Route::get('/clientes', function() {return 'clientes';})->name('app.clientes');
+
+    Route::get('/fornecedores', function() {return 'fornecedores';})->name('app.fornecedores');
+
+    Route::get('/produtos', function() {return 'produtos';})->name('app.produtos');
 });
 
+Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
+
+
+
+//rota de fallback
+Route::fallback(function() {
+    Echo 'Deu ruim, <a href="'. route ("site.index") .'">Clique Aqui</a>';
+});
+
+
+//Route::redirect('/rota2', '/rota1');
+
+/*
+Route::get('/contato/{nome}/{categoria_id}', 
+    function(
+        string $nome = 'Desconhecido', 
+        int $categoria_id = 1 // 1 - informação
+)   {
+        echo "Estamos aqui: $nome - $categoria_id";
+    }
+)->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');//primeiro parametro é o nome do parametro recebido na rota a ser tratado, o segundo é uma expressão regular que determina as condições de aceitação no valor enviado
+*/
 /*
 Verbos http
 

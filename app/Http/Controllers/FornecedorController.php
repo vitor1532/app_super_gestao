@@ -13,6 +13,7 @@ class FornecedorController extends Controller
         0 => [
             "nome" => "fornecedor 1",
             "status" => "N",
+            "cnpj" => "1"
         ],
         1 => [
             "nome" => "fornecedor 2",

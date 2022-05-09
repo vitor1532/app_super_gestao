@@ -19,4 +19,12 @@
 
 @endphp
 
-@dd($fornecedores);
+<br>
+
+@isset($fornecedores)
+	Fornecedor : {{ $fornecedores[0]['nome'] }}
+	<br>
+	Status: {{ $fornecedores[0]['status'] }}
+	<br>
+	CNPJ: {{ $fornecedores[0]['cnpj'] }}
+@endisset

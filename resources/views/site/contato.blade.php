@@ -221,7 +221,7 @@
 
             <div class="informacao-pagina">
                 <div class="contato-principal">
-                    <form>
+                    <form method="post">
                         <input type="text" placeholder="Nome" class="borda-preta">
                         <br>
                         <input type="text" placeholder="Telefone" class="borda-preta">

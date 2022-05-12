@@ -3,7 +3,7 @@
 @section('titulo', $titulo)
 
 @section('conteudo')
-
+    <?php use App\Http\Controllers\ContatoController as Contato ?>
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
             <h1>Entre em contato conosco</h1>
@@ -11,24 +11,8 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                <form method="post">
-                    <input type="text" placeholder="Nome" class="borda-preta">
-                    <br>
-                    <input type="text" placeholder="Telefone" class="borda-preta">
-                    <br>
-                    <input type="text" placeholder="E-mail" class="borda-preta">
-                    <br>
-                    <select class="borda-preta">
-                        <option value="">Qual o motivo do contato?</option>
-                        <option value="">Dúvida</option>
-                        <option value="">Elogio</option>
-                        <option value="">Reclamação</option>
-                    </select>
-                    <br>
-                    <textarea class="borda-preta" placeholder="Preencha aqui a sua mensagem"></textarea>
-                    <br>
-                    <button type="submit" class="borda-preta">ENVIAR</button>
-                </form>
+                @component('site.layouts._components.form_contato')
+                @endcomponent
             </div>
         </div>  
     </div>
@@ -51,4 +35,5 @@
             <img src="{{asset('img/mapa.png')}}">
         </div>
     </div>
+
 @endsection

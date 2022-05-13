@@ -1,19 +1,25 @@
+{{ $slot }}
+
+@isset($x)
+    {{$x}}
+@endisset
+
 <form action="{{ route('site.contato') }}" method="post">
     @csrf
-    <input type="text" placeholder="Nome" class="borda-preta" name="nome">
+    <input type="text" placeholder="Nome" class="{{$classe}}" name="nome">
     <br>
-    <input type="text" placeholder="Telefone" class="borda-preta" name="telefone">
+    <input type="text" placeholder="Telefone" class="{{$classe}}" name="telefone">
     <br>
-    <input type="text" placeholder="E-mail" class="borda-preta" name="email">
+    <input type="text" placeholder="E-mail" class="{{$classe}}" name="email">
     <br>
-    <select class="borda-preta" name="motivo">
+    <select class="{{$classe}}" name="motivo">
         <option value="">Qual o motivo do contato?</option>
-        <option value="">Dúvida</option>
-        <option value="">Elogio</option>
-        <option value="">Reclamação</option>
+        <option value="1">Dúvida</option>
+        <option value="2">Elogio</option>
+        <option value="3">Reclamação</option>
     </select>
     <br>
-    <textarea class="borda-preta" placeholder="Preencha aqui a sua mensagem" name="mensagem"></textarea>
+    <textarea class="{{$classe}}" placeholder="Preencha aqui a sua mensagem" name="mensagem"></textarea>
     <br>
-    <button type="submit" class="borda-preta">ENVIAR</button>
+    <button type="submit" class="{{$classe}}">ENVIAR</button>
 </form>

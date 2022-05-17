@@ -23,7 +23,7 @@ class CreateProdutoDetalhesTable extends Migration
 
             $table->timestamps();
 
-            //constraint
+            //constraint (garantia para que o foreign id seja unico)
             $table->unique('produto_id');
         });
     }

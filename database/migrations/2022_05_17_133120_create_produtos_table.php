@@ -22,6 +22,7 @@ class CreateProdutosTable extends Migration
             $table->integer('estoque_minimo')->default(1);
             $table->integer('estoque_maximo')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

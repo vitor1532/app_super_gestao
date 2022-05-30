@@ -32,5 +32,13 @@ class FornecedorSeeder extends Seeder
             'site' => 'fornecedois.com.br'
         ]);
 
+        //registro 3
+        DB::table('fornecedores')->insert([
+            'nome' => 'Fornecetres',
+            'email' => 'contato@fornecetres.com.br',
+            'uf' => 'SP',
+            'site' => 'fornecetres.com.br'
+        ]);
+
     }
 }

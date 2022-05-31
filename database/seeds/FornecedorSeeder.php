@@ -13,6 +13,7 @@ class FornecedorSeeder extends Seeder
      */
     public function run()
     {
+        /*
         //registro 1
         //instanciando o obj
         $fornecedor = new Fornecedor();
@@ -39,6 +40,9 @@ class FornecedorSeeder extends Seeder
             'uf' => 'SP',
             'site' => 'fornecetres.com.br'
         ]);
+        */
+
+        factory(Fornecedor::class, 50)->create();
 
     }
 }

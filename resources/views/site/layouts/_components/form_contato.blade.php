@@ -1,15 +1,5 @@
 {{ $slot }}
 
-@isset($x)
-    {{$x}}
-@endisset
-
-<div style="top:0px; left:0px; width:100%; background:red;">
-    <pre>
-        {{ print_r($errors) }}
-    </pre>
-</div>
-
 <form action="{{ route('site.contato') }}" method="post">
     @csrf
     <input type="text" placeholder="Nome" class="{{$classe}}" name="nome" value="{{ old('nome') }}">
@@ -22,9 +12,9 @@
 
         <option value="">Qual o motivo do contato?</option>
 
-        @foreach($motivo_contatos as $key => $motivo)
+        @foreach($motivo_contatos as $motivo_contato)
 
-            <option value="{{ $key }}" {{ old($motivo) == $key ? 'selected' : '' }}> {{ $motivo }} </option>
+            <option value="{{ $motivo_contato->id }}" {{ old('motivo_contato') == $motivo_contato->id ? 'selected' : '' }}> {{ $motivo_contato->motivo_contato }} </option>
 
         @endforeach
 
@@ -34,5 +24,3 @@
     <br>
     <button type="submit" class="{{$classe}}">ENVIAR</button>
 </form>
-
-{{ print_r($motivo_contatos) }}

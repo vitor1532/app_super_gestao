@@ -62,6 +62,17 @@ class ContatoController extends Controller
 
         return redirect()->route('site.index');
 
+        /*
+            
+            <div style="position:absolute; top:0px; width:100%; background:red">
+                <pre>
+                {{ print_r($errors) }}
+                </pre>
+            </div>
+
+
+        */
+
     }
 
 }

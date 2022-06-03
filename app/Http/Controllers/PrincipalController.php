@@ -18,10 +18,3 @@ class PrincipalController extends Controller
         return view('site.principal', ['motivo_contatos' => $motivo_contatos]);
     }
 }
-
-
-   /*   @foreach($motivo_contatos as $key => $motivo)
-
-            <option value="{{ $key }}" {{ old($motivo) == $key ? 'selected' : '' }}> {{ $motivo }} </option>
-
-        @endforeach*/

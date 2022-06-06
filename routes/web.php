@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\LogAcessoMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PrincipalController@principal')->name('site.index');
+Route::get('/', 'PrincipalController@principal')
+    ->name('site.index')
+    ->middleware(LogAcessoMiddleware::class);
 
 Route::get('/sobreNos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 

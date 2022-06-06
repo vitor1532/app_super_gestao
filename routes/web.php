@@ -14,9 +14,9 @@ use App\Http\Middleware\LogAcessoMiddleware;
 |
 */
 
-Route::get('/', 'PrincipalController@principal')
-    ->name('site.index')
-    ->middleware(LogAcessoMiddleware::class);
+Route::middleware(LogAcessoMiddleware::class)
+    ->get('/', 'PrincipalController@principal')
+    ->name('site.index');
 
 Route::get('/sobreNos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 

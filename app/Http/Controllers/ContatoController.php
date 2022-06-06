@@ -48,34 +48,39 @@ class ContatoController extends Controller
         $contato->save();*/
 
 
-        //realizar a validação dos dados do formulário recebidos no request
-        $request->validate(
-            //array de validações
-            [
+        
+        //array de validações
+        $rules = [
                 //'nome do input' => validação
                 'nome' => 'required|min:3|max:40|',
                 'telefone' => 'required|integer',
                 'email' => 'email',
                 'motivo_contatos_id' => 'required',
                 'mensagem' => 'required|min:3|max:2000'
-            ],
+            ];
+
             //array de mensagens de erro
-            [
+        $feedback = [
                 //{nomeDoInput.nomeDaValidação} => 'mensagem'
-                'nome.required' => 'O nome é obrigatório!',
+                //'nome.required' => 'O nome é obrigatório!',
                 'nome.min' => 'O nome deve ter no mínimo 3 caracteres',
                 'nome.max' => 'O nome deve ter no máximo 40 caracteres',
-                'telefone.required' => 'O telefone é obrigatório!',
+                //'telefone.required' => 'O telefone é obrigatório!',
                 'telefone.integer' => 'O telefone deve ser  composto apenas por números!',
                 'email.email' => 'Este campo deve conter um e-mail válido!',
                 'motivo_contatos_id.required' => 'Selecione um motivo do contato!',
-                'mensagem.required' => 'Este campo é obrigatório!',
+                //'mensagem.required' => 'Este campo é obrigatório!',
                 'mensagem.min' => 'A mensagem deve ter no mínimo 3 caracteres',
-                'mensagem.max' => 'A mensagem deve ter no máximo 2000 caracteres'
+                'mensagem.max' => 'A mensagem deve ter no máximo 2000 caracteres',
 
+                //se for colocado apenas a validação, se configura uma msg padrão
 
-            ]
-        );
+                'required' => 'O campo :attribute deve ser preenchido'
+
+            ];
+
+        //realizar a validação dos dados do formulário recebidos no request
+        $request->validate($rules, $feedback);
 
         SiteContato::create($request->all());
 

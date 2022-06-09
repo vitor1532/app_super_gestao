@@ -8,8 +8,14 @@ use App\SiteContato;
 
 use App\MotivoContato;
 
+use App\Http\Middleware\LogAcessoMiddleware;
+
 class ContatoController extends Controller
 {
+
+    public function __construct() {
+        
+    }
 
     public function contato() {
 

@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 
 use App\MotivoContato;
 
+use App\Http\Middleware\LogAcessoMiddleware;
+
 class PrincipalController extends Controller
 {
+
+    public function __construct() {
+        
+    }
 
     public function principal() {
 

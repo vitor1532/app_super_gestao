@@ -10,7 +10,7 @@ class SobreNosController extends Controller
 {
 
     public function __construct() {
-
+        
     }
 
     public function sobreNos() {

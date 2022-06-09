@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Middleware\LogAcessoMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +13,11 @@ use App\Http\Middleware\LogAcessoMiddleware;
 |
 */
 
-Route::get('/', 'PrincipalController@principal')
-    ->name('site.index');
+Route::get('/', 'PrincipalController@principal')->name('site.index');
 
-Route::get('/sobreNos', 'SobreNosController@sobreNos')
-    ->name('site.sobrenos');
+Route::get('/sobreNos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 
-Route::get('/contato', 'ContatoController@contato')
-    ->name('site.contato');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@contatoSave')->name('site.contato');
 
 Route::get('/login', function() {return 'Login';})->name('site.login');

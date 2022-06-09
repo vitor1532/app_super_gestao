@@ -96,11 +96,13 @@
 
 		Fornecedor : {{ $fornecedor['nome'] }}
 		<br>
-		Status: {{ $fornecedor['status'] }}
+		Email: {{ $fornecedor['email'] }}
 		<br>
-		CNPJ: {{ $fornecedor['cnpj'] ?? 'Não informado'}}
+		Site: {{ $fornecedor['site'] ?? 'Não informado'}}
 		<br>
-		Telefone : ({{ $fornecedor['ddd'] ?? ''}}) {{ $fornecedor['telefone'] ?? 'Não informado'}} - 
+		Uf: {{ $fornecedor['uf'] ?? 'Não informado'}}
+		<br>
+		{{--Telefone : ({{ $fornecedor['ddd'] ?? ''}}) {{ $fornecedor['telefone'] ?? 'Não informado'}} - 
 		@switch($fornecedor['ddd'])
 			@case('11')
 				São Paulo - SP
@@ -115,20 +117,21 @@
 				DDD não reconhecido.
 				@break
 
-			@endswitch
+			@endswitch--}}
 		<br>
 		@if($loop->first) {{--retorna true na primeira iteração do loop--}}
 			Primeira iteração do loop
 		@endif
 		@if($loop->last) {{--retorna true na primeira iteração do loop--}}
+
 			Última iteração do loop
 
-			<br>
+			<br><hr>
 
 			Total de registros: {{ $loop->count }}
 		@endif
 
-		<br><br><hr><br>
+		<br><hr><br>
 		@empty
 			Não existem fornecedores cadastrados!!!
 

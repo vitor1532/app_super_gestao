@@ -13,8 +13,14 @@ class LoginController extends Controller
 
         $erro = '';
 
-        if($request->get('erro') == 1) {
-            $erro = 'Usuário e/ou senha inválido(s)';
+        switch ($request->get('erro')) {
+            case 1:
+                $erro = 'Usuário e/ou senha inválido(s)';
+                break;
+
+            case 2:
+                $erro = 'Atenção, página restrita! Faça o login para continuar!';
+                break;
         }
 
         return view('site.login', ['titulo' => 'Login', 'erro' => $erro]);
@@ -48,8 +54,16 @@ class LoginController extends Controller
                         ->first();
 
 
+        //teste de sessão
         if(isset($usuario->name)) {
-            dd($usuario);
+
+            session_start();
+            $_SESSION['id'] = $usuario->id;
+            $_SESSION['nome'] = $usuario->name;
+            $_SESSION['email'] = $usuario->email;
+
+            return redirect()->route('app.clientes');
+
         } else {
             return redirect()->route('site.login', ['erro' => 1]);
         }

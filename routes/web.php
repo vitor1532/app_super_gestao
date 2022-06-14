@@ -20,7 +20,8 @@ Route::get('/sobreNos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@contatoSave')->name('site.contato');
 
-Route::get('/login', function() {return 'Login';})->name('site.login');
+Route::get('/login', 'LoginController@index')->name('site.login');
+Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 //App
 Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function() {

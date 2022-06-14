@@ -23,7 +23,7 @@ Route::post('/contato', 'ContatoController@contatoSave')->name('site.contato');
 Route::get('/login', function() {return 'Login';})->name('site.login');
 
 //App
-Route::middleware('atenticar')->prefix('/app')->group(function() {
+Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function() {
     Route::get('/clientes', function() {return 'clientes';})->name('app.clientes');
 
 

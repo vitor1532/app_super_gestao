@@ -29,5 +29,9 @@ class LogAcessoMiddleware
         //return $next($request);
 
         $resposta = $next($request);
+
+        $resposta->setStatusCode(201, 'Uaaaaai');
+
+        return $resposta;
     }
 }

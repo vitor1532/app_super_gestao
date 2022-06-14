@@ -9,8 +9,15 @@ use App\User;
 class LoginController extends Controller
 {
     
-    public function index() {
-        return view('site.login', ['titulo' => 'Login']);
+    public function index(Request $request) {
+
+        $erro = '';
+
+        if($request->get('erro') == 1) {
+            $erro = 'Usuário e/ou senha inválido(s)';
+        }
+
+        return view('site.login', ['titulo' => 'Login', 'erro' => $erro]);
     }
 
     public function autenticar(Request $request) {
@@ -32,8 +39,6 @@ class LoginController extends Controller
         $email = $request->get('usuario');
         $password = $request->get('senha');
 
-        echo "Usuário: $email | Senha: $password <br>";
-
         //iniciar model user
         $user = new User();
 
@@ -44,9 +49,9 @@ class LoginController extends Controller
 
 
         if(isset($usuario->name)) {
-            echo 'Logado com sucesso';
+            dd($usuario);
         } else {
-            echo 'deu ruim parceiro';
+            return redirect()->route('site.login', ['erro' => 1]);
         }
     }
 

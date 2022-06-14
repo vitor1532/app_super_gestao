@@ -18,9 +18,8 @@
                     <input type="text" name="usuario" placeholder="Digite seu Usuário" class="borda-preta" value="{{ old('usuario') }}">
                     <div style="color: red;">
                         {{ $errors->has('usuario') ? $errors->first('usuario') : '' }}
+
                     </div>
-                    
-                    <br>
 
                     <input type="password" name="senha" placeholder="Digite sua Senha" class="borda-preta">
                     <div style="color: red;">
@@ -29,6 +28,14 @@
                                        
 
                     <button type="submit" class="borda-preta"> Login </button>
+                    {{-- FORMA QUE EU IMPLEMENTEI
+                    @if(isset($erro) && $erro == 1)
+
+                            <p style="color: red;">Usuário e/ou senha inválido(s)</p>
+
+                    @endif--}}
+                    {{-- Forma da aula --}}
+                    <div style="color:red;">{{ isset($erro) && $erro != '' ? $erro : '' }}</div>
 
                 </form>
             </div>

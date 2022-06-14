@@ -20,7 +20,7 @@ Route::get('/sobreNos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@contatoSave')->name('site.contato');
 
-Route::get('/login', 'LoginController@index')->name('site.login');
+Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 //App

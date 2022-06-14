@@ -31,7 +31,7 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
     Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
 
-    Route::get('/produtos', 'ProdutoController@index')->name('app.produto');
+    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');

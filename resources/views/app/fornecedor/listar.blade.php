@@ -7,17 +7,10 @@
 	<div class="conteudo-pagina">
 			
 		<div class="titulo-pagina-2">
-			<p>{{$titulo}} - Lista</p>
+			<p>{{$titulo}}</p>
 		</div>
 
-		<div class="menu">
-
-			<ul>
-				<li><a href="">Novo</a></li>
-				<li><a href="">Consulta</a></li>
-			</ul>
-
-		</div>
+		@include('app.fornecedor.layouts._partials.sub_menu')
 
 		<div class="informacao-pagina">
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">

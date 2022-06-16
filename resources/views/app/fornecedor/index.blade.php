@@ -10,19 +10,12 @@
 			<p>{{$titulo}}</p>
 		</div>
 
-		<div class="menu">
-
-			<ul>
-				<li><a href="">Novo</a></li>
-				<li><a href="">Consulta</a></li>
-			</ul>
-
-		</div>
+		@include('app.fornecedor.layouts._partials.sub_menu')
 
 		<div class="informacao-pagina">
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
-				<form method="post" action="{{ route('app.teste') }}">
+				<form method="post" action="{{ route('app.fornecedor.listar') }}">
 					@csrf
 
 					<input type="text" name="nome" placeholder="Nome" class="borda-preta">

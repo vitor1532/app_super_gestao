@@ -19,9 +19,11 @@
 					@csrf
 
 					<input type="text" name="nome" placeholder="Nome" class="borda-preta">
+					<div style="color: red;">{{ $errors->has('nome') ? $errors->first('nome') : '' }}</div>
 					<input type="text" name="site" placeholder="Site" class="borda-preta">
+					<div style="color: red;">{{ $errors->has('site') ? $errors->first('site') : '' }}</div>
 					<select name="uf" class="borda-preta">
-						<option value="nulo">Selecione o Estado</option>
+						<option value="">--Selecione o Estado--</option>
 						<option value="ac">Acre</option>
 						<option value="al">Alagoas</option>
 						<option value="ap">Amapá</option>
@@ -50,8 +52,9 @@
 						<option value="se">Sergipe</option>
 						<option value="to">Tocantins</option>
 					</select>
+					<div style="color: red;">{{ $errors->has('uf') ? $errors->first('uf') : '' }}</div>
 					<input type="text" name="email" placeholder="E-mail" class="borda-preta">
-
+					<div style="color: red;">{{ $errors->has('email') ? $errors->first('email') : '' }}</div>
 					<button type="submit" class="borda-preta">Cadastrar</button>
 
 				</form>

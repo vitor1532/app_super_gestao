@@ -30,6 +30,9 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
     Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+    Route::post('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+    Route::post('/fornecedois', 'FornecedorController@teste')->name('app.teste');
+
 
     Route::get('/produto', 'ProdutoController@index')->name('app.produto');
 });

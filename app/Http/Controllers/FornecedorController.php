@@ -19,4 +19,8 @@ class FornecedorController extends Controller
 
     return view('app.fornecedor.index', ['fornecedores' => $fornecedores]);//compact encaminha a variável dada como parametro para a view
     }
+
+    public function teste(Request $request) {
+        return dd($request);
+    }
 }

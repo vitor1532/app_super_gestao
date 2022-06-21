@@ -21,7 +21,7 @@
 					<input type="text" name="nome" placeholder="Nome" class="borda-preta">
 					<input type="text" name="site" placeholder="Site" class="borda-preta">
 					<select name="uf" class="borda-preta">
-						<option value="nulo">Selecione o Estado</option>
+						<option value="">--Selecione o Estado--</option>
 						<option value="ac">Acre</option>
 						<option value="al">Alagoas</option>
 						<option value="ap">Amapá</option>

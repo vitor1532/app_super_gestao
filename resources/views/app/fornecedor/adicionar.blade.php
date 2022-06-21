@@ -24,7 +24,7 @@
 					<input type="text" name="site" placeholder="Site" class="borda-preta" value="{{ old('site') }}">
 					<div style="color: red;">{{ $errors->has('site') ? $errors->first('site') : '' }}</div>
 
-					<select name="uf" class="borda-preta" value="{{ old('uf') }}">
+					<select name="uf" class="borda-preta" >
 						<option value="">--Selecione o Estado--</option>
 						<option value="ac">Acre</option>
 						<option value="al">Alagoas</option>

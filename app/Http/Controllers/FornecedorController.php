@@ -83,9 +83,20 @@ class FornecedorController extends Controller
 
     public function listar(Request $request) {
 
+        //capturar dados do form
+        $dados = $request->all();
         
+        //comparar dados com o banco de dados
+        $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->get('nome').'%')
+                                    ->where('site', 'like', '%'.$request->get('site').'%')
+                                    ->where('uf', 'like', '%'.$request->get('uf').'%')
+                                    ->where('email', 'like', '%'.$request->get('email').'%')
+                                    ->get();
+        
+        
+        //retornar fornecedores compatíveis em uma lista
 
-        return view('app.fornecedor.listar', ['titulo' => 'Fornecedores - Lista']);
+        return view('app.fornecedor.listar', ['titulo' => 'Fornecedores - Lista', 'fornecedores' => $fornecedores]);
     }
 
     public function index2() {

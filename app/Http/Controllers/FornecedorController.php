@@ -99,10 +99,14 @@ class FornecedorController extends Controller
         return view('app.fornecedor.listar', ['titulo' => 'Fornecedores - Lista', 'fornecedores' => $fornecedores]);
     }
 
-    public function index2() {
+    public function editar() {
+        
+    }
+
+    /*public function index2() {
 
         $fornecedores = Fornecedor::all();
 
     return view('app.fornecedor.index', ['fornecedores' => $fornecedores]);//compact encaminha a variável dada como parametro para a view
-    }
+    }*/
 }

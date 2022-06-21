@@ -18,11 +18,13 @@
 				<form method="post" action="{{ route('app.fornecedor.adicionar') }}">
 					@csrf
 
-					<input type="text" name="nome" placeholder="Nome" class="borda-preta">
+					<input type="text" name="nome" placeholder="Nome" class="borda-preta" value="{{ old('nome') }}">
 					<div style="color: red;">{{ $errors->has('nome') ? $errors->first('nome') : '' }}</div>
-					<input type="text" name="site" placeholder="Site" class="borda-preta">
+
+					<input type="text" name="site" placeholder="Site" class="borda-preta" value="{{ old('site') }}">
 					<div style="color: red;">{{ $errors->has('site') ? $errors->first('site') : '' }}</div>
-					<select name="uf" class="borda-preta">
+
+					<select name="uf" class="borda-preta" value="{{ old('uf') }}">
 						<option value="">--Selecione o Estado--</option>
 						<option value="ac">Acre</option>
 						<option value="al">Alagoas</option>
@@ -53,9 +55,12 @@
 						<option value="to">Tocantins</option>
 					</select>
 					<div style="color: red;">{{ $errors->has('uf') ? $errors->first('uf') : '' }}</div>
-					<input type="text" name="email" placeholder="E-mail" class="borda-preta">
+
+					<input type="text" name="email" placeholder="E-mail" class="borda-preta" value="{{ old('email') }}">
 					<div style="color: red;">{{ $errors->has('email') ? $errors->first('email') : '' }}</div>
+
 					<button type="submit" class="borda-preta">Cadastrar</button>
+					{{ $msg }}
 
 				</form>
 

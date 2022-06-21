@@ -100,7 +100,7 @@ class FornecedorController extends Controller
     }
 
     public function editar() {
-        
+        echo 'editar';
     }
 
     /*public function index2() {

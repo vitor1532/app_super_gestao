@@ -47,7 +47,9 @@
 
 				</table>
 
-				
+				<hr>
+				{{ $fornecedores->appends($request)->links() }}
+				<br>
 
 			</div>
 		</div>

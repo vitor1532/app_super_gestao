@@ -28,7 +28,7 @@
 						<option value="">--Selecione o Estado--</option>
 						@foreach($uf as $sigla => $estado)
 							<option value="{{ $sigla }}"
-							@if(old('uf') == $sigla) {{ 'selected' }} @endif>
+							@if(old('uf') == $sigla) {{ 'selected' }} @elseif(isset($fornecedor->uf) && $sigla == $fornecedor->uf) {{'selected'}} @endif>
 								{{ $estado }}
 							</option>
 						@endforeach

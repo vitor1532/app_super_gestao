@@ -45,7 +45,7 @@ class FornecedorController extends Controller
     public function index() {
 
         $uf = $this->uf();
-        
+
         return view('app.fornecedor.index', ['titulo' => 'Fornecedores', 'uf' => $uf]);
     }
 
@@ -141,7 +141,7 @@ class FornecedorController extends Controller
 
         $uf = $this->uf();
         $msg = '';
-        
+
         $fornecedor = Fornecedor::find($id);
 
         return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Editar', 'fornecedor' => $fornecedor, 'msg' => $msg, 'uf' => $uf]);

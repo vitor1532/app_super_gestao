@@ -9,11 +9,49 @@ use App\Fornecedor;
 class FornecedorController extends Controller
 {
 
+    public function uf() {
+        $uf = ['AC' => 'Acre',
+            'AL' => 'Alagoas',
+            'AP' => 'Amapá',
+            'AM' => 'Amazonas',
+            'BA' => 'Bahia',
+            'CE' => 'Ceará',
+            'DF' => 'Distrito Federal',
+            'ES' => 'Espirito Santo',
+            'GO' => 'Goiás',
+            'MA' => 'Maranhão',
+            'MT' => 'Mato Grosso',
+            'MS' => 'Mato Grosso do Sul',
+            'MG' => 'Minas Gerais',
+            'PA' => 'Pará',
+            'PB' => 'Paraíba',
+            'PR' => 'Paraná',
+            'PE' => 'Pernambuco',
+            'PI' => 'Piauí',
+            'RJ' => 'Rio de Janeiro',
+            'RN' => 'Rio Grande do Norte',
+            'RS' => 'Rio Grande do Sul',
+            'RO' => 'Rondônia',
+            'RR' => 'Roraima',
+            'SC' => 'Santa Catarina',
+            'SP' => 'São Paulo',
+            'SE' => 'Sergipe',
+            'TO' => 'Tocantins'
+        ];
+
+        return $uf;
+    }
+
     public function index() {
-        return view('app.fornecedor.index', ['titulo' => 'Fornecedores']);
+
+        $uf = $this->uf();
+        
+        return view('app.fornecedor.index', ['titulo' => 'Fornecedores', 'uf' => $uf]);
     }
 
     public function adicionar(Request $request) {
+
+        $uf = $this->uf();
 
         $msg = '';
 
@@ -43,7 +81,6 @@ class FornecedorController extends Controller
             $site = $request->get('site');
             $uf = $request->get('uf');
             $email = $request->get('email');
-            
 
             //criando instancia de fornecedor
             $fornecedor = new Fornecedor;
@@ -69,7 +106,7 @@ class FornecedorController extends Controller
                 $fornecedor->create($request->all());
                 
                 //ao invés de capturar em variáveis e usar o método save como feito acima, pode-se usar a função do eloquent "$fornecedor->create($request->all())"
-
+                $uf = $this->uf();
                 $msg = 'Cadastro realizado com sucesso!';
                 
             }else {
@@ -77,12 +114,13 @@ class FornecedorController extends Controller
             }
         }
         
-        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Adicionar', 'msg' => $msg]);
+        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Adicionar', 'msg' => $msg, 'uf' => $uf]);
 
     }
 
     public function listar(Request $request) {
 
+        $uf = $this->uf();
         //capturar dados do form
         $dados = $request->all();
         
@@ -96,11 +134,18 @@ class FornecedorController extends Controller
         
         //retornar fornecedores compatíveis em uma lista
 
-        return view('app.fornecedor.listar', ['titulo' => 'Fornecedores - Lista', 'fornecedores' => $fornecedores]);
+        return view('app.fornecedor.listar', ['titulo' => 'Fornecedores - Lista', 'fornecedores' => $fornecedores, 'uf' => $uf]);
     }
 
-    public function editar() {
-        echo 'editar';
+    public function editar($id) {
+
+        $uf = $this->uf();
+        $msg = '';
+        
+        $fornecedor = Fornecedor::find($id);
+
+        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Editar', 'fornecedor' => $fornecedor, 'msg' => $msg, 'uf' => $uf]);
+
     }
 
     /*public function index2() {

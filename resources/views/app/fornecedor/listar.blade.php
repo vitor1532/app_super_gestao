@@ -30,7 +30,7 @@
 
 					<tbody>
 						
-						@foreach($fornecedores as $indice => $fornecedor)
+						@foreach($fornecedores as $fornecedor)
 
 							<tr>
 								<td>{{ $fornecedor->nome }}</td>
@@ -38,7 +38,7 @@
 								<td>{{ $fornecedor->uf }}</td>
 								<td>{{ $fornecedor->email }} </td>
 								<td><a href="#">Excluir</a></td>
-								<td><a href="{{ route('app.fornecedor.editar') }}">Editar</a></td>
+								<td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
 							</tr>
 
 						@endforeach

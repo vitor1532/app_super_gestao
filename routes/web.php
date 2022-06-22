@@ -32,10 +32,11 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
 
     //Fornecedores
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
-    Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
-    Route::get('/fornecedor/editar', 'FornecedorController@editar')->name('app.fornecedor.editar');
     Route::get('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
     Route::post('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+    Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+    Route::get('/fornecedor/editar/{id}', 'FornecedorController@editar')->name('app.fornecedor.editar');
+    
 
     
     Route::get('/produto', 'ProdutoController@index')->name('app.produto');

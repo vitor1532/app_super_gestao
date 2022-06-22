@@ -54,8 +54,8 @@ class FornecedorController extends Controller
         $uf = $this->uf();
 
         $msg = '';
-
-        if($request->input('_token') != '') {
+        //inclusão
+        if($request->input('_token') != '' && $request->input('id') == '') {
             //regras de validação
             $regras = [
                 'nome' => 'required|min:3|max:40',
@@ -107,14 +107,30 @@ class FornecedorController extends Controller
                 
                 //ao invés de capturar em variáveis e usar o método save como feito acima, pode-se usar a função do eloquent "$fornecedor->create($request->all())"
                 $uf = $this->uf();
-                $msg = 'Cadastro realizado com sucesso!';
-                
-            }else {
-                $msg = 'ops';
+                $msg = 'Cadastro realizado com sucesso!';             
+            } else {
+                $msg = 'Erro ao realizar cadastro.';
             }
         }
+
+        //edição
+        if($request->input('_token') != '' && $request->input('id') != '') {
+
+            $fornecedor = Fornecedor::find($request->input('id'));
+
+            
+            $update = $fornecedor->update($request->all());
+
+            if($update) {
+                $msg = 'Update realizado com sucesso';
+            }else {
+                $msg = 'Update aparesentou problema(s)';
+            }
+
+            return redirect()->route('app.fornecedor.editar', ['id' => $request->input('id'), 'titulo' => 'Fornecedores - Adicionar', 'msg' => $msg, 'uf' => $uf]);
+        }
         
-        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Adicionar', 'msg' => $msg, 'uf' => $uf]);
+        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Editar', 'msg' => $msg, 'uf' => $uf]);
 
     }
 
@@ -137,14 +153,13 @@ class FornecedorController extends Controller
         return view('app.fornecedor.listar', ['titulo' => 'Fornecedores - Lista', 'fornecedores' => $fornecedores, 'uf' => $uf]);
     }
 
-    public function editar($id) {
+    public function editar($id, $msg = '') {
 
         $uf = $this->uf();
-        $msg = '';
 
         $fornecedor = Fornecedor::find($id);
 
-        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Editar', 'fornecedor' => $fornecedor, 'msg' => $msg, 'uf' => $uf]);
+        return view('app.fornecedor.adicionar', ['titulo' => 'Fornecedores - Editar', 'fornecedor' => $fornecedor, 'uf' => $uf, 'msg' => $msg]);
 
     }
 

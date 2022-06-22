@@ -18,6 +18,8 @@
 				<form method="post" action="{{ route('app.fornecedor.adicionar') }}">
 					@csrf
 
+					<input type="hidden" name="id" value="{{ $fornecedor->id ?? '' }}">
+
 					<input type="text" name="nome" placeholder="Nome" class="borda-preta" value="{{ $fornecedor->nome ?? old('nome') }}">
 					<div style="color: red;">{{ $errors->has('nome') ? $errors->first('nome') : '' }}</div>
 
@@ -39,7 +41,7 @@
 					<div style="color: red;">{{ $errors->has('email') ? $errors->first('email') : '' }}</div>
 
 					<button type="submit" class="borda-preta">Cadastrar</button>
-					{{ $msg }}
+					{{ $msg ?? '' }}
 
 				</form>
 

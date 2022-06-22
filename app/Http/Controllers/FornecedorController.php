@@ -145,7 +145,7 @@ class FornecedorController extends Controller
                                     ->where('site', 'like', '%'.$request->get('site').'%')
                                     ->where('uf', 'like', '%'.$request->get('uf').'%')
                                     ->where('email', 'like', '%'.$request->get('email').'%')
-                                    ->paginate(5);
+                                    ->paginate(15);
         
         
         //retornar fornecedores compatíveis em uma lista

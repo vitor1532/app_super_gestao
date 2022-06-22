@@ -31,7 +31,6 @@
 							@if(old('uf') == $sigla) {{ 'selected' }} @endif>
 								{{ $estado }}
 							</option>
-
 						@endforeach
 					</select>
 					<div style="color: red;">{{ $errors->has('uf') ? $errors->first('uf') : '' }}</div>

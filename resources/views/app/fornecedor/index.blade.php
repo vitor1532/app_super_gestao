@@ -23,7 +23,10 @@
 					<select name="uf" class="borda-preta">
 						<option value="">--Selecione o Estado--</option>
 						@foreach($uf as $sigla => $estado)
-							<option value="{{ $sigla }}">{{ $estado }}</option>
+							<option value="{{ $sigla }}"
+							@if(old('uf') == $sigla) {{ 'selected' }} @endif>
+								{{ $estado }}
+							</option>
 						@endforeach
 					</select>
 					<input type="text" name="email" placeholder="E-mail" class="borda-preta">

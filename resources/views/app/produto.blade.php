@@ -4,6 +4,6 @@
 
 @section('conteudo')
 
-<br><br><br><br>Produto
+<br><br><br><br>Produtos
 
 @endsection

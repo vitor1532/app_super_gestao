@@ -46,9 +46,9 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
     //excluir
     Route::get('/fornecedor/excluir/{id}/{msg?}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
     
+    //produtos    
+    Route::resource('produto', 'ProdutoController');
 
-    
-    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');

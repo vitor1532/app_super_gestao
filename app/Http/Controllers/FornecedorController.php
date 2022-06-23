@@ -163,6 +163,24 @@ class FornecedorController extends Controller
 
     }
 
+    public function excluir($id, $msg = '') {
+
+        $uf = $this->uf();
+
+        $fornecedor = Fornecedor::find($id);
+
+        $softDelete = $fornecedor->delete();
+
+        if($softDelete) {
+            $msg = 'Registro deletado com sucesso';
+        } else {
+            $msg = 'Algum erro ocorreu ao tentar deletar o registro';
+        }
+
+        return view('app.fornecedor.index', ['msg' => $msg, 'id' => $id, 'titulo' => 'Fornecedores', 'uf' => $uf]);
+        
+    }
+
     /*public function index2() {
 
         $fornecedores = Fornecedor::all();

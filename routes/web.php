@@ -42,6 +42,9 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
 
     //editar
     Route::get('/fornecedor/editar/{id}/{msg?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
+
+    //excluir
+    Route::get('/fornecedor/excluir/{id}/{msg?}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
     
 
     

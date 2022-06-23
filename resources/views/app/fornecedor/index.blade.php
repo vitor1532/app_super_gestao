@@ -32,6 +32,7 @@
 					<input type="text" name="email" placeholder="E-mail" class="borda-preta">
 
 					<button type="submit" class="borda-preta">Pesquisar</button>
+					{{ $msg ?? '' }}
 
 				</form>
 

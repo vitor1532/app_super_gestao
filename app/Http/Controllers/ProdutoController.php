@@ -12,9 +12,12 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('app.produto', ['titulo' => 'Produtos']);
+
+        $produtos = Produto::paginate(15);
+
+        return view('app.produto.index', ['titulo' => 'Produtos', 'produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
@@ -22,9 +25,53 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        echo 'create';
+
+        $msg = '';
+        //inclusão
+        if($request->input('_token') != '' && $request->input('id') == '') {
+            //regras de validação
+            $regras = [
+                'nome' => 'required|min:3|max:40',
+                'descricao' => 'required',
+                'peso' => 'required',
+                'unidade_id' => 'required'
+            ];
+
+            $feedback = [
+                'required' => 'O campo é obrigatório',
+                'nome.min' => 'O campo deve ter um mínimo de 3 caracteres',
+                'nome.max' => 'O campo deve ter um máximo de 40 caracteres'
+            ];
+
+            //validação
+            $request->validate($regras, $feedback);
+
+            $email = $request->get('email');
+
+            //criando instancia de produtos
+            $produtos = new Produto;
+
+            //verificar no db
+            $fornecedor_validate = $produtos->where('nome', $request->get('nome'))
+                                                ->where('descricao', $request->get('descricao'))
+                                                ->where('peso', $request->get('peso'))
+                                                ->where('unidade_id', $request->get('unidade_id'))
+                                                ->first();
+
+             //salvar
+            if(!isset($fornecedor_validate->id)) {
+                //aplicando os dados
+                $produtos->create($request->all());
+                $msg = 'Cadastro realizado com sucesso!';
+
+            } else {
+                $msg = 'Erro ao realizar cadastro.';
+            }
+        }
+
+        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg]);
     }
 
     /**

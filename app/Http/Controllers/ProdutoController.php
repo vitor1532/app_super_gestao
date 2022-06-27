@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
+
+    public function unidades() {
+        $unidades = Unidade::all();
+
+        return $unidades;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -99,8 +105,8 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //dd($produto);
-        return view('app.produto.show', ['titulo' => $produto->nome,'produto' => $produto]);
+        $unidades = $this->unidades();
+        return view('app.produto.show', ['titulo' => $produto->nome,'produto' => $produto, 'unidades' => $unidades]);
     }
 
     /**
@@ -111,7 +117,8 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        $unidades = $this->unidades();
+        return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
     }
 
     /**
@@ -135,12 +142,6 @@ class ProdutoController extends Controller
     public function destroy(Produto $produto)
     {
         //
-    }
-
-    public function unidades() {
-        $unidades = Unidade::all();
-
-        return $unidades;
     }
 
 }

@@ -48,22 +48,23 @@ class ProdutoController extends Controller
             //regras de validação
             $regras = [
                 'nome' => 'required|min:3|max:40',
-                'descricao' => 'required',
-                'peso' => 'required',
-                'unidade_id' => 'required|not_in:0'
+                'descricao' => 'required|min:3|max:2000',
+                'peso' => 'required|integer',
+                'unidade_id' => 'exists:unidades,id|required|not_in:0' //exists:<tabela>,<coluna>
             ];
 
             $feedback = [
                 'required' => 'O campo é obrigatório',
-                'nome.min' => 'O campo deve ter um mínimo de 3 caracteres',
+                'min' => 'O campo deve ter um mínimo de 3 caracteres',
                 'nome.max' => 'O campo deve ter um máximo de 40 caracteres',
-                'not_in' => 'Selecione uma opção válida'
+                'descricao.max' => 'O campo deve ter um máximo de 2000 caracteres',
+                'not_in' => 'Selecione uma opção válida',
+                'peso.integer' => 'O campo peso deve ser um número inteiro',
+                'unidade_id.exists' => 'A unidade de medida informada não existe'
             ];
 
             //validação
             $request->validate($regras, $feedback);
-
-            $email = $request->get('email');
 
             //criando instancia de produtos
             $produtos = new Produto;
@@ -85,7 +86,7 @@ class ProdutoController extends Controller
                 $msg = 'Erro ao realizar cadastro.';
             }
         }
-
+        //return redirect()->route('produto.index', ['titulo' => 'Produtos - Adicionar', 'unidades' => $unidades]);
         return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg, 'unidades' => $unidades]);
 
     }
@@ -98,7 +99,8 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+        //dd($produto);
+        return view('app.produto.show', ['titulo' => $produto->nome,'produto' => $produto]);
     }
 
     /**

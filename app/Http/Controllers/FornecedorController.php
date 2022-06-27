@@ -65,7 +65,7 @@ class FornecedorController extends Controller
             ];
 
             $feedback = [
-                'not_in' => 'O campo é obrigatório',
+                'not_in' => 'Selecione uma opção válida',
                 'required' => 'O campo é obrigatório',
                 'email' => 'O campo usuário deve ser um e-mail válido',
                 'nome.min' => 'O campo deve ter um mínimo de 3 caracteres',

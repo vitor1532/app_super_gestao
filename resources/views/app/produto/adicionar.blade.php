@@ -29,7 +29,17 @@
 					<input type="number" name="peso" placeholder="Peso (Kg)" class="borda-preta" value="{{ $produtos->peso ?? old('peso') }}">
 					<div style="color: red;">{{ $errors->has('peso') ? $errors->first('peso') : '' }}</div>
 
-					<input type="number" name="unidade_id" placeholder="Unidade ID" class="borda-preta" value="{{$produtos->unidade_id ??  old('unidade_id') }}">
+					<select name="unidade_id" >
+						<option>-->Selecione a Unidade de Medida<--</option>
+
+						@foreach($unidades as $unidade)
+							<option value="{{ $unidade->id }}"
+							@if(old('unidade_id') == $unidade->id) {{ 'selected' }} @endif>
+								{{ $unidade->id }}
+							</option>
+						@endforeach
+
+					</select>
 					<div style="color: red;">{{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}</div>
 
 					<button type="submit" class="borda-preta">Cadastrar</button>

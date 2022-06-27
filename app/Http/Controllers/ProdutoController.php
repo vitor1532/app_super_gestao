@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
+use App\Unidade;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -27,8 +28,9 @@ class ProdutoController extends Controller
      */
     public function create(Request $request)
     {
-
-        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar']);
+        $unidades = $this->unidades();
+        //dd($unidades);
+        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'unidades' => $unidades]);
     }
 
     /**
@@ -40,6 +42,7 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $msg = '';
+        $unidades = $this->unidades();
         //inclusão
         if($request->input('_token') != '' && $request->input('id') == '') {
             //regras de validação
@@ -47,13 +50,14 @@ class ProdutoController extends Controller
                 'nome' => 'required|min:3|max:40',
                 'descricao' => 'required',
                 'peso' => 'required',
-                'unidade_id' => 'required'
+                'unidade_id' => 'required|not_in:0'
             ];
 
             $feedback = [
                 'required' => 'O campo é obrigatório',
                 'nome.min' => 'O campo deve ter um mínimo de 3 caracteres',
-                'nome.max' => 'O campo deve ter um máximo de 40 caracteres'
+                'nome.max' => 'O campo deve ter um máximo de 40 caracteres',
+                'not_in' => 'Selecione uma opção válida'
             ];
 
             //validação
@@ -82,7 +86,7 @@ class ProdutoController extends Controller
             }
         }
 
-        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg]);
+        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg, 'unidades' => $unidades]);
 
     }
 
@@ -130,4 +134,11 @@ class ProdutoController extends Controller
     {
         //
     }
+
+    public function unidades() {
+        $unidades = Unidade::all();
+
+        return $unidades;
+    }
+
 }

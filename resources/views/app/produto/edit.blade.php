@@ -15,8 +15,9 @@
 		<div class="informacao-pagina">
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
-				<form method="post" action="#">
+				<form method="post" action="{{ route('produto.update', ['produto' => $produto->id]) }}">
 					@csrf
+					@method('PUT')
 
 					<input type="hidden" name="id" value="{{ $produtos->id ?? '' }}">
 
@@ -42,7 +43,7 @@
 					</select>
 					<div style="color: red;">{{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}</div>
 
-					<button type="submit" class="borda-preta">Cadastrar</button>
+					<button type="submit" class="borda-preta">Atualizar</button>
 					{{ $msg ?? '' }}
 
 				</form>

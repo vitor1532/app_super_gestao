@@ -130,7 +130,12 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        //request é o obj já atualizado
+        //produto é o obj antes da atualização
+
+        $produto->update($request->all());
+
+        return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     /**

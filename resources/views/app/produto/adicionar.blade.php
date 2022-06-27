@@ -15,7 +15,7 @@
 		<div class="informacao-pagina">
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
-				<form method="post" action="{{ route('produto.create') }}">
+				<form method="post" action="{{ route('produto.store') }}">
 					@csrf
 
 					<input type="hidden" name="id" value="{{ $produtos->id ?? '' }}">

@@ -28,6 +28,17 @@ class ProdutoController extends Controller
     public function create(Request $request)
     {
 
+        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar']);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $msg = '';
         //inclusão
         if($request->input('_token') != '' && $request->input('id') == '') {
@@ -72,17 +83,7 @@ class ProdutoController extends Controller
         }
 
         return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg]);
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

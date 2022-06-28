@@ -15,18 +15,25 @@
 		<div class="informacao-pagina">
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
-				<form method="post" action="{{ route('produto.store') }}">
-					@csrf
+				@if(isset($produto->id))
+					<form method="post" action="{{ route('produto.update', ['produto' => $produto->id]) }}">
+						@csrf
+					
+						@method('PUT')
+				@else
+					<form method="post" action="{{ route('produto.store') }}">
+						@csrf
+				@endif
 
-					<input type="hidden" name="id" value="{{ $produtos->id ?? '' }}">
+					<input type="hidden" name="id" value="{{ $produto->id ?? '' }}">
 
-					<input type="text" name="nome" placeholder="Nome" class="borda-preta" value="{{ $produtos->nome ?? old('nome') }}">
+					<input type="text" name="nome" placeholder="Nome" class="borda-preta" value="{{ $produto->nome ?? old('nome') }}">
 					<div style="color: red;">{{ $errors->has('nome') ? $errors->first('nome') : '' }}</div>
 
-					<input type="text" name="descricao" placeholder="Descrição" class="borda-preta" value="{{ $produtos->descricao ?? old('descricao') }}">
+					<input type="text" name="descricao" placeholder="Descrição" class="borda-preta" value="{{ $produto->descricao ?? old('descricao') }}">
 					<div style="color: red;">{{ $errors->has('descricao') ? $errors->first('descricao') : '' }}</div>
 
-					<input type="number" name="peso" placeholder="Peso (Kg)" class="borda-preta" value="{{ $produtos->peso ?? old('peso') }}">
+					<input type="number" name="peso" placeholder="Peso (Kg)" class="borda-preta" value="{{ $produto->peso ?? old('peso') }}">
 					<div style="color: red;">{{ $errors->has('peso') ? $errors->first('peso') : '' }}</div>
 
 					<select name="unidade_id" >
@@ -34,8 +41,9 @@
 
 						@foreach($unidades as $unidade)
 							<option value="{{ $unidade->id }}"
-							@if(old('unidade_id') == $unidade->id) {{ 'selected' }} @endif>
-								{{ $unidade->id }}
+							{{--@if(old('unidade_id') == $unidade->id) {{ 'selected' }} @endif--}}
+							{{ ( $produto->unidade_id ?? old('unidade_id') ) == $unidade->id ? 'selected' : '' }}>
+								{{ $unidade->unidade }}
 							</option>
 						@endforeach
 

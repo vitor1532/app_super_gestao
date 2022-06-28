@@ -14,6 +14,7 @@ class ProdutoController extends Controller
 
         return $unidades;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -118,7 +119,8 @@ class ProdutoController extends Controller
     public function edit(Produto $produto)
     {
         $unidades = $this->unidades();
-        return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
+        //return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.adicionar', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
     }
 
     /**
@@ -146,7 +148,14 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $softDelete = $produto->delete();
+
+        if($softDelete) {
+            $msg = 'Registro deletado com sucesso';
+        } else {
+            $msg = 'Algum erro ocorreu ao tentar deletar o registro';
+        }
+        return redirect()->route('produto.index', ['msg' => $msg]);
     }
 
 }

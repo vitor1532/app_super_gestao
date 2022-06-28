@@ -22,7 +22,7 @@
 							<th>Nome</th>
 							<th>Descrição</th>
 							<th>Peso</th>
-							<th>Unidade ID</th>
+							<th>Medida</th>
 							<th></th>
 							<th></th>
 							<th></th>
@@ -37,7 +37,12 @@
 								<td>{{ $produto->nome }}</td>
 								<td>{{ $produto->descricao }}</td>
 								<td>{{ $produto->peso }}</td>
-								<td>{{ $produto->unidade_id }}</td>
+								<td>
+									@foreach($unidades as $unidade)
+										@if($unidade->id == $produto->unidade_id)
+											{{$unidade->unidade}}
+										@endif
+									@endforeach</td>
 								<td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
 								<td><a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a></td>
 								<td>

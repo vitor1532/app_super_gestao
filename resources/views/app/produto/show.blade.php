@@ -33,12 +33,18 @@
 
 					<tr>
 						<td>Peso: </td>
-						<td>{{ $produto->peso }} kg</td>
+						<td>{{ $produto->peso }}</td>
 					</tr>
 
 					<tr>
 						<td>Unidade de Medida: </td>
-						<td>{{ $produto->unidade_id }}</td>
+						<td>
+							@foreach($unidades as $unidade)
+								@if($unidade->id == $produto->unidade_id)
+									{{$unidade->unidade}}
+								@endif
+							@endforeach
+						</td>
 					</tr>
 
 				</table>

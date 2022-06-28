@@ -15,38 +15,9 @@
 		<div class="informacao-pagina">
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
-				<form method="post" action="{{ route('produto.update', ['produto' => $produto->id]) }}">
-					@csrf
-					@method('PUT')
-
-					<input type="hidden" name="id" value="{{ $produtos->id ?? '' }}">
-
-					<input type="text" name="nome" placeholder="Nome" class="borda-preta" value="{{ $produto->nome ?? old('nome') }}">
-					<div style="color: red;">{{ $errors->has('nome') ? $errors->first('nome') : '' }}</div>
-
-					<input type="text" name="descricao" placeholder="Descrição" class="borda-preta" value="{{ $produto->descricao ?? old('descricao') }}">
-					<div style="color: red;">{{ $errors->has('descricao') ? $errors->first('descricao') : '' }}</div>
-
-					<input type="number" name="peso" placeholder="Peso (Kg)" class="borda-preta" value="{{ $produto->peso ?? old('peso') }}">
-					<div style="color: red;">{{ $errors->has('peso') ? $errors->first('peso') : '' }}</div>
-
-					<select name="unidade_id" >
-						<option>-->Selecione a Unidade de Medida<--</option>
-
-						@foreach($unidades as $unidade)
-							<option value="{{ $unidade->id }}"
-							{{ ( $produto->unidade_id ?? old('unidade_id') ) == $unidade->id ? 'selected' : '' }}>
-								{{ $unidade->id }}
-							</option>
-						@endforeach
-
-					</select>
-					<div style="color: red;">{{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}</div>
-
-					<button type="submit" class="borda-preta">Atualizar</button>
-					{{ $msg ?? '' }}
-
-				</form>
+				@component('app.produto.layouts._components.form', ['unidades' => $unidades, 'produto' => $produto])
+				@endcomponent
+				{{ $msg ?? '' }}
 
 			</div>
 		</div>

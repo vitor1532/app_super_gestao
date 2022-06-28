@@ -22,10 +22,11 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
+        $unidades = $this->unidades();
 
         $produtos = Produto::paginate(15);
 
-        return view('app.produto.index', ['titulo' => 'Produtos', 'produtos' => $produtos, 'request' => $request->all()]);
+        return view('app.produto.index', ['titulo' => 'Produtos', 'produtos' => $produtos, 'request' => $request->all(), 'unidades' => $unidades]);
     }
 
     /**
@@ -119,8 +120,8 @@ class ProdutoController extends Controller
     public function edit(Produto $produto)
     {
         $unidades = $this->unidades();
-        //return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
-        return view('app.produto.adicionar', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
+        //return view('app.produto.adicionar', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
     }
 
     /**

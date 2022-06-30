@@ -133,6 +133,28 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+
+        //regras de validação
+        $regras = [
+            'nome' => 'required|min:3|max:40',
+            'descricao' => 'required|min:3|max:2000',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id|required|not_in:0' //exists:<tabela>,<coluna>
+        ];
+
+        $feedback = [
+            'required' => 'O campo é obrigatório',
+            'min' => 'O campo deve ter um mínimo de 3 caracteres',
+            'nome.max' => 'O campo deve ter um máximo de 40 caracteres',
+            'descricao.max' => 'O campo deve ter um máximo de 2000 caracteres',
+            'not_in' => 'Selecione uma opção válida',
+            'peso.integer' => 'O campo peso deve ser um número inteiro',
+            'unidade_id.exists' => 'A unidade de medida informada não existe'
+        ];
+
+        //validação
+        $request->validate($regras, $feedback);
+
         //request é o obj já atualizado
         //produto é o obj antes da atualização
 

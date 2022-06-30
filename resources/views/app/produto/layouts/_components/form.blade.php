@@ -25,7 +25,7 @@
 		@foreach($unidades as $unidade)
 			<option value="{{ $unidade->id }}"
 			@if(old('unidade_id') == $unidade->id) {{ 'selected' }} @endif
-			{{--{{ ( $produto->unidade_id ?? old('unidade_id') ) == $unidade->id ? 'selected' : '' }}--}}>
+			{{ ( $produto->unidade_id ?? old('unidade_id') ) == $unidade->id ? 'selected' : '' }}>
 				{{ $unidade->unidade }}
 			</option>
 		@endforeach
@@ -34,6 +34,5 @@
 	<div style="color: red;">{{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}</div>
 
 	<button type="submit" class="borda-preta">Cadastrar</button>
-	
 
 </form>

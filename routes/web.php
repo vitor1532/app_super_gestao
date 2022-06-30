@@ -49,6 +49,9 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
     //produtos    
     Route::resource('produto', 'ProdutoController');
 
+    //produto_detalhe
+    Route::resource('produto-detalhe', 'ProdutoDetalheController');
+
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');

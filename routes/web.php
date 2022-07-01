@@ -23,6 +23,8 @@ Route::post('/contato', 'ContatoController@contatoSave')->name('site.contato');
 Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
+Route::resource('cadastro', 'Cadastrar');
+
 //App
 Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function() {
 
@@ -45,13 +47,12 @@ Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function(
 
     //excluir
     Route::get('/fornecedor/excluir/{id}/{msg?}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
-    
-    //produtos    
+
+    //produtos
     Route::resource('produto', 'ProdutoController');
 
     //produto_detalhe
     Route::resource('produto-detalhe', 'ProdutoDetalheController');
-
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
@@ -67,9 +68,9 @@ Route::fallback(function() {
 //Route::redirect('/rota2', '/rota1');
 
 /*
-Route::get('/contato/{nome}/{categoria_id}', 
+Route::get('/contato/{nome}/{categoria_id}',
     function(
-        string $nome = 'Desconhecido', 
+        string $nome = 'Desconhecido',
         int $categoria_id = 1 // 1 - informação
 )   {
         echo "Estamos aqui: $nome - $categoria_id";

@@ -11,23 +11,33 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form action="{{ route('site.login') }}" method="post">
+                <form action="{{ route('cadastro.store') }}" method="post">
 
                     @csrf
 
-                    <input type="text" name="usuario" placeholder="Digite seu Usuário" class="borda-preta" value="{{ old('usuario') }}">
+                    <input type="text" name="name" placeholder="Digite seu Nome" class="borda-preta" value="{{ old('name') }}">
                     <div style="color: red;">
-                        {{ $errors->has('usuario') ? $errors->first('usuario') : '' }}
+                        {{ $errors->has('name') ? $errors->first('name') : '' }}
 
                     </div>
 
-                    <input type="password" name="senha" placeholder="Digite sua Senha" class="borda-preta">
+                    <input type="text" name="email" placeholder="Digite seu E-mail" class="borda-preta">
                     <div style="color: red;">
-                        {{ $errors->has('senha') ? $errors->first('senha') : '' }}
+                        {{ $errors->has('email') ? $errors->first('email') : '' }}
+                    </div>
+
+                    <input type="password" name="password" placeholder="Digite sua Senha" class="borda-preta">
+                    <div style="color: red;">
+                        {{ $errors->has('password') ? $errors->first('password') : '' }}
+                    </div>
+
+                    <input type="password" name="confirmPassword" placeholder="Confirme sua Senha" class="borda-preta">
+                    <div style="color: red;">
+                        {{ $errors->has('confirmPassword') ? $errors->first('confirmPassword') : '' }}
                     </div>
 
 
-                    <button type="submit" class="borda-preta"> Login </button>
+                    <button type="submit" class="borda-preta"> Cadastrar </button>
                     {{-- FORMA QUE EU IMPLEMENTEI
                     @if(isset($erro) && $erro == 1)
 
@@ -36,10 +46,9 @@
                     @endif--}}
                     {{-- Forma da aula --}}
                     <div style="color:red;">{{ isset($erro) && $erro != '' ? $erro : '' }}</div>
-                    <div style="color:green;">{{ $msg ?? '' }}</div>
+                    <div style="color:red;">{{ $msg ?? '' }}</div>
 
                 </form>
-
             </div>
 
         </div>

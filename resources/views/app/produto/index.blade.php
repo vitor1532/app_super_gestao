@@ -23,6 +23,9 @@
 							<th>Descrição</th>
 							<th>Peso</th>
 							<th>Medida</th>
+							<th>Comprimento</th>
+							<th>Altura</th>
+							<th>Largura</th>
 							<th></th>
 							<th></th>
 							<th></th>
@@ -42,16 +45,22 @@
 										@if($unidade->id == $produto->unidade_id)
 											{{$unidade->unidade}}
 										@endif
-									@endforeach</td>
+									@endforeach
+								</td>
+								<td>{{ $produto->comprimento ?? '' }}</td>
+								<td>{{ $produto->altura ?? '' }}</td>
+								<td>{{ $produto->largura ?? '' }}</td>
 								<td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
 								<td><a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a></td>
 								<td>
 									<form id="form_{{$produto->id}}" method="post" action="{{ route('produto.destroy', ['produto' => $produto->id]) }}">
 										@method('DELETE')
 										@csrf
-										<a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a></td>
+										<a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+									</form>		
+								</td>
 										{{--<button type="submit">Excluir</button>--}}
-									</form>
+									
 							</tr>
 
 						@endforeach

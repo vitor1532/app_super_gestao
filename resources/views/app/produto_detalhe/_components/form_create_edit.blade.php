@@ -1,5 +1,5 @@
 @if(isset($produto_detalhe->id))
-	<form method="post" action="{{ route('produto.update', ['produto' => $produto_detalhe->id]) }}">
+	<form method="post" action="{{ route('produto-detalhe.update', ['produto_detalhe' => $produto_detalhe->id]) }}">
 		@csrf
 	
 		@method('PUT')
@@ -48,6 +48,12 @@
 	</select>
 	<div style="color: red;">{{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}</div>
 
-	<button type="submit" class="borda-preta">Cadastrar</button>
+	@if(isset($produto_detalhe->id))
+		<button type="submit" class="borda-preta">Editar</button>
+	@else
+		<button type="submit" class="borda-preta">Cadastrar</button>
+	@endif
+
+	
 
 </form>

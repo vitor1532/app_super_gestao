@@ -32,7 +32,7 @@ class ProdutoDetalheController extends Controller
         $unidades = Unidade::all();
         $produtos = Produto::all();
 
-         return view('app.produto_detalhe.create', ['titulo' => 'Detalhes do Produto', 'unidades' => $unidades, 'produtos' => $produtos]);
+         return view('app.produto_detalhe.create', ['titulo' => 'Adicionar Detalhes do Produto', 'unidades' => $unidades, 'produtos' => $produtos]);
     }
 
     /**
@@ -43,6 +43,25 @@ class ProdutoDetalheController extends Controller
      */
     public function store(Request $request)
     {
+
+        $regras = [
+            'produto_id' => 'exists:produtos,id|required|not_in:0',
+            'comprimento' => 'required|numeric',
+            'largura' => 'required|numeric',
+            'altura' => 'required|numeric',
+            'unidade_id' => 'exists:unidades,id|required|not_in:0'
+        ];
+
+        $feedback = [
+            'required' => 'O campo é obrigatório!',
+            'numeric' => 'O campo deve ser preenchido apenas com números',
+            'produto_id.exists' => 'O produto não foi encontrado no Banco de Dados',
+            'unidade_id.exists' => 'A unidade de medida não foi encontrada no Banco de Dados',
+            'not_in' => 'Selecione uma opção válida'
+        ];
+
+        $request->validate($regras, $feedback);
+
         ProdutoDetalhe::create($request->all());
         echo 'cadastro realizado com sucesso';
     }
@@ -66,7 +85,10 @@ class ProdutoDetalheController extends Controller
      */
     public function edit($id)
     {
-        //
+        $unidades = Unidade::all();
+        $produtos = Produto::all();
+
+         return view('app.produto_detalhe.create', ['titulo' => 'Editar Detalhes do Produto', 'unidades' => $unidades, 'produtos' => $produtos]);
     }
 
     /**

@@ -7,7 +7,7 @@
 	<div class="conteudo-pagina">
 			
 		<div class="titulo-pagina-2">
-			<p>{{'Adicionar '.$titulo}}</p>
+			<p>{{ $titulo }}</p>
 		</div>
 
 		<div class="menu">

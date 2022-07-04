@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class Cadastrar extends Controller
+class CadastroController extends Controller
 {
     /**
      * Display a listing of the resource.

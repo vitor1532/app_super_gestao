@@ -6,7 +6,7 @@
     <?php use App\Http\Controllers\ContatoController as Contato ?>
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
-            <h1>Login</h1>
+            <h1>{{ $titulo }}</h1>
         </div>
 
         <div class="informacao-pagina">

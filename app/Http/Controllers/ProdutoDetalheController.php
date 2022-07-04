@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Unidade;
 
+use App\Produto;
+
 use App\ProdutoDetalhe;
 
 class ProdutoDetalheController extends Controller
@@ -28,8 +30,9 @@ class ProdutoDetalheController extends Controller
     public function create()
     {
         $unidades = Unidade::all();
+        $produtos = Produto::all();
 
-         return view('app.produto_detalhe.create', ['titulo' => 'Detalhes do Produto', 'unidades' => $unidades]);
+         return view('app.produto_detalhe.create', ['titulo' => 'Detalhes do Produto', 'unidades' => $unidades, 'produtos' => $produtos]);
     }
 
     /**

@@ -8,7 +8,21 @@
 		@csrf
 @endif
 
-	<input type="text" name="produto_id" placeholder="ID do produto" class="borda-preta" value="{{ $produto_detalhe->produto_id ?? old('produto_id') }}">
+	{{--<input type="text" name="produto_id" placeholder="ID do produto" class="borda-preta" value="{{ $produto_detalhe->produto_id ?? old('produto_id') }}">--}}
+	
+	
+	<select name="produto_id">
+		<option>--> Selecione o Produto <--</option>
+
+		@foreach($produtos as $p)
+			<option value="{{ $p->id }}"
+					@if(old('produto_id') == $p->id) {{ 'selected' }} @endif
+					{{ ( $produto_detalhe->produto_id ?? old('produto_id') ) == $p->id ? 'selected' : '' }}>
+						{{ $p->nome }}
+			</option>
+		@endforeach
+
+	</select>
 	<div style="color: red;">{{ $errors->has('produto_id') ? $errors->first('produto_id') : '' }}</div>
 
 	<input type="text" name="comprimento" placeholder="Comprimento" class="borda-preta" value="{{ $produto_detalhe->comprimento ?? old('comprimento') }}">

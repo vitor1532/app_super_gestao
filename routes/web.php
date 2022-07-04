@@ -23,7 +23,7 @@ Route::post('/contato', 'ContatoController@contatoSave')->name('site.contato');
 Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
-Route::resource('cadastro', 'Cadastrar');
+Route::resource('cadastro', 'CadastroController');
 
 //App
 Route::middleware('atenticar:padrao,visitante')->prefix('/app')->group(function() {

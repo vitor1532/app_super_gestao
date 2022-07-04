@@ -77,7 +77,7 @@ class Cadastrar extends Controller
             }
         } else {
 
-            return view('app.cadastro', ['msg' => 'As senhas não são compatíveis, tente novamente',  'titulo' => 'Login']);
+            return view('app.cadastro', ['msg' => 'As senhas não são compatíveis, tente novamente',  'titulo' => 'Cadastro']);
 
         }
 

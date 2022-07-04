@@ -47,6 +47,21 @@
 						</td>
 					</tr>
 
+					<tr>
+						<td>Comprimento: </td>
+						<td>{{ $produto->produtoDetalhe->comprimento.' cm' ?? '' }}</td>
+					</tr>
+
+					<tr>
+						<td>Largura: </td>
+						<td>{{ $produto->produtoDetalhe->largura.' cm' ?? '' }}</td>
+					</tr>
+
+					<tr>
+						<td>Altura: </td>
+						<td>{{ $produto->produtoDetalhe->altura.' cm' ?? '' }}</td>
+					</tr>
+
 				</table>
 			</div>
 		</div>

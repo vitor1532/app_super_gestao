@@ -25,7 +25,7 @@ class ProdutoController extends Controller
     {
         $unidades = $this->unidades();
 
-        $produtos = Produto::paginate(15);
+        $produtos = Produto::with(['itemDetalhe'])->paginate(15);
         /*
         foreach($produtos as $key => $produto) {
 

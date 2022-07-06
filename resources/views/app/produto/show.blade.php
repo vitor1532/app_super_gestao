@@ -37,7 +37,7 @@
 					</tr>
 
 					<tr>
-						<td>Unidade de Medida: </td>
+						<td>Unidade: </td>
 						<td>
 							@foreach($unidades as $unidade)
 								@if($unidade->id == $produto->unidade_id)

@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
+    
     protected $table = 'produtos';
 
     use SoftDeletes;
 
     protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
 
-    public function produtoDetalhe() {
+    public function itemDetalhe() {
 
         return $this->hasOne('App\itemDetalhe', 'produto_id', 'id');
 

@@ -13,7 +13,7 @@ class Produto extends Model
 
     public function produtoDetalhe() {
 
-        return $this->hasOne('App\ProdutoDetalhe');
+        return $this->hasOne('App\ProdutoDetalhe', 'produto_id', 'id');
 
         //produto tem 1 produtoDetalhe
 

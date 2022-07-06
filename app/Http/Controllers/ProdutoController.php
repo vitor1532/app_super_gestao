@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Produto;
 use App\ProdutoDetalhe;
 use App\Unidade;
+use App\Item;
+use App\ItemDetalhe;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -25,7 +27,7 @@ class ProdutoController extends Controller
     {
         $unidades = $this->unidades();
 
-        $produtos = Produto::with(['itemDetalhe'])->paginate(15);
+        $produtos = Produto::with(['produtoDetalhe'])->paginate(15);
         /*
         foreach($produtos as $key => $produto) {
 

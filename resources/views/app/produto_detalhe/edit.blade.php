@@ -13,12 +13,13 @@
 		@include('app.produto.layouts._partials.sub_menu')
 
 		<div class="informacao-pagina">
-
+			{{ $produto_detalhe->toJson() }}
 			<h4>Produto</h4>
 			<br>
-			<div>Nome: {{ $produto_detalhe->produto->nome }}</div>
+			<div>Nome: {{ $produto_detalhe->item->nome }}</div>
+			{{ $produto_detalhe->toJson() }}
 			<br>
-			<div>Descrição: {{ $produto_detalhe->produto->descricao }}</div>
+			<div>Descrição: {{ $produto_detalhe->item->descricao }}</div>
 			<br>
 
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
@@ -31,5 +32,7 @@
 		</div>
 
 	</div>
+
+
 
 @endsection

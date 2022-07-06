@@ -22,7 +22,7 @@
 							<th>Nome</th>
 							<th>Descrição</th>
 							<th>Peso</th>
-							<th>Medida</th>
+							<th>Unidade</th>
 							<th>Comprimento</th>
 							<th>Altura</th>
 							<th>Largura</th>

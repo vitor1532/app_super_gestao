@@ -21,4 +21,10 @@ class Item extends Model
         //produto tem 1 produtoDetalhe
 
     }
+
+    public function fornecedor() {
+
+        return $this->belongsTo('App\Fornecedor');
+
+    }
 }

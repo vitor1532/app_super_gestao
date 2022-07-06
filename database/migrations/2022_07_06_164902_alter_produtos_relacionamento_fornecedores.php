@@ -14,7 +14,19 @@ class AlterProdutosRelacionamentoFornecedores extends Migration
     public function up()
     {
         //criando a coluna em produtos que vai receber a fk de fornecedores
-        
+        Schema::table('produtos', function(Blueprint $table) {
+
+            //insere um registro de fornecedor para estabelecer o relacionamento
+            $fornecedor_id = DB::table('fornecedores')->insertGetId([
+                'nome' => 'Fornecedor Padrão',
+                'site' => 'padrao.com',
+                'uf' => 'MG',
+                'email' => 'contato@padrao.com'
+            ]);
+
+            $table->unsignedBigInteger('fornecedor_id')->default($fornecedor_id)->after('id');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
+        });
     }
 
     /**
@@ -24,6 +36,10 @@ class AlterProdutosRelacionamentoFornecedores extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('produtos', function(Blueprint $table) {
+            $table->dropForeign('produtos_fornecedor_id_foreign');
+            $table->dropColumn('fornecedor_id');
+        });
+        
     }
 }

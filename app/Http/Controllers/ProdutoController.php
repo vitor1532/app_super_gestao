@@ -6,6 +6,7 @@ use App\Produto;
 use App\ProdutoDetalhe;
 use App\Unidade;
 use App\Item;
+use App\Fornecedor;
 use App\ItemDetalhe;
 use Illuminate\Http\Request;
 
@@ -27,21 +28,7 @@ class ProdutoController extends Controller
     {
         $unidades = $this->unidades();
 
-        $produtos = Produto::with(['produtoDetalhe'])->paginate(15);
-        /*
-        foreach($produtos as $key => $produto) {
-
-            $produtoDetalhe = ProdutoDetalhe::where('produto_id', $produto->id)->first();
-
-            if(isset($produtoDetalhe)) {
-
-                $produtos[$key]['comprimento'] = $produtoDetalhe->comprimento;
-                $produtos[$key]['largura'] = $produtoDetalhe->largura;
-                $produtos[$key]['altura'] = $produtoDetalhe->altura;
-
-            }
-        }
-        */
+        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(15);
 
         return view('app.produto.index', ['titulo' => 'Produtos', 'produtos' => $produtos, 'request' => $request->all(), 'unidades' => $unidades]);
     }

@@ -40,6 +40,12 @@ class AlterProdutosRelacionamentoFornecedores extends Migration
             $table->dropForeign('produtos_fornecedor_id_foreign');
             $table->dropColumn('fornecedor_id');
         });
+
+        $padrao = DB::table('fornecedores')->where('nome', 'Fornecedor Padrão')
+                                            ->where('site', 'padrao.com')
+                                            ->where('uf', 'MG')
+                                            ->where('email', 'contato@padrao.com')
+                                            ->delete();
         
     }
 }

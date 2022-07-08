@@ -49,22 +49,22 @@
 
 					<tr>
 						<td>Comprimento: </td>
-						<td>{{ $produto->produtoDetalhe->comprimento.' cm' ?? '' }}</td>
+						<td>{{ $produto->itemDetalhe->comprimento.' cm' ?? '' }}</td>
 					</tr>
 
 					<tr>
 						<td>Largura: </td>
-						<td>{{ $produto->produtoDetalhe->largura.' cm' ?? '' }}</td>
+						<td>{{ $produto->itemDetalhe->largura.' cm' ?? '' }}</td>
 					</tr>
 
 					<tr>
 						<td>Altura: </td>
-						<td>{{ $produto->produtoDetalhe->altura.' cm' ?? '' }}</td>
+						<td>{{ $produto->itemDetalhe->altura.' cm' ?? '' }}</td>
 					</tr>
 
 					<tr>
-						<td>ID do Fornecedor: </td>
-						<td>{{ $produto->fornecedor_id }}</td>
+						<td>Fornecedor: </td>
+						<td>{{ $produto->fornecedor->nome ?? '' }}</td>
 					</tr>
 
 				</table>

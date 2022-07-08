@@ -63,8 +63,8 @@
 					</tr>
 
 					<tr>
-						<td>Fornecedor: </td>
-						<td></td>
+						<td>ID do Fornecedor: </td>
+						<td>{{ $produto->fornecedor_id }}</td>
 					</tr>
 
 				</table>

@@ -82,7 +82,7 @@ class ProdutoController extends Controller
             $request->validate($regras, $feedback);
 
             //criando instancia de produtos
-            $produtos = new Produto;
+            $produtos = new Item;
 
             //verificar no db
             $produtos_validate = $produtos->where('nome', $request->get('nome'))
@@ -109,10 +109,10 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  \App\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show(Item $produto)
     {
         $unidades = $this->unidades();
         //dd($produto);
@@ -122,10 +122,10 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  \App\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $produto)
+    public function edit(Item $produto)
     {
         $unidades = $this->unidades();
         $fornecedores = Fornecedor::all();
@@ -136,10 +136,10 @@ class ProdutoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
+     * @param  \App\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Item $produto)
     {
         $fornecedores = Fornecedor::all();
         //regras de validação
@@ -147,7 +147,8 @@ class ProdutoController extends Controller
             'nome' => 'required|min:3|max:40',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
-            'unidade_id' => 'exists:unidades,id|required|not_in:0' //exists:<tabela>,<coluna>
+            'unidade_id' => 'exists:unidades,id|required|not_in:0',  //exists:<tabela>,<coluna>
+            'fornecedor_id' => 'exists:fornecedores,id|required|not_in:0'
         ];
 
         $feedback = [
@@ -157,7 +158,8 @@ class ProdutoController extends Controller
             'descricao.max' => 'O campo deve ter um máximo de 2000 caracteres',
             'not_in' => 'Selecione uma opção válida',
             'peso.integer' => 'O campo peso deve ser um número inteiro',
-            'unidade_id.exists' => 'A unidade de medida informada não existe'
+            'unidade_id.exists' => 'A unidade de medida informada não existe',
+            'fornecedor_id.exists' => 'O Fornecedor informado não existe'
         ];
 
         //validação
@@ -177,7 +179,7 @@ class ProdutoController extends Controller
      * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
+    public function destroy(Item $produto)
     {
         $softDelete = $produto->delete();
 

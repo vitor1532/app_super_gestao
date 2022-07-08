@@ -41,8 +41,8 @@ class ProdutoController extends Controller
     public function create(Request $request)
     {
         $unidades = $this->unidades();
-        //dd($unidades);
-        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -55,6 +55,7 @@ class ProdutoController extends Controller
     {
         $msg = '';
         $unidades = $this->unidades();
+        $fornecedores = Fornecedor::all();
         //inclusão
         if($request->input('_token') != '' && $request->input('id') == '') {
             //regras de validação
@@ -62,7 +63,8 @@ class ProdutoController extends Controller
                 'nome' => 'required|min:3|max:40',
                 'descricao' => 'required|min:3|max:2000',
                 'peso' => 'required|integer',
-                'unidade_id' => 'exists:unidades,id|required|not_in:0' //exists:<tabela>,<coluna>
+                'unidade_id' => 'exists:unidades,id|required|not_in:0', //exists:<tabela>,<coluna>
+                'fornecedor_id' => 'exists:fornecedores,id|required|not_in:0'
             ];
 
             $feedback = [
@@ -72,7 +74,8 @@ class ProdutoController extends Controller
                 'descricao.max' => 'O campo deve ter um máximo de 2000 caracteres',
                 'not_in' => 'Selecione uma opção válida',
                 'peso.integer' => 'O campo peso deve ser um número inteiro',
-                'unidade_id.exists' => 'A unidade de medida informada não existe'
+                'unidade_id.exists' => 'A unidade de medida informada não existe',
+                'fornecedor_id.exists' => 'O Fornecedor informado não existe'
             ];
 
             //validação
@@ -82,14 +85,14 @@ class ProdutoController extends Controller
             $produtos = new Produto;
 
             //verificar no db
-            $fornecedor_validate = $produtos->where('nome', $request->get('nome'))
+            $produtos_validate = $produtos->where('nome', $request->get('nome'))
                                                 ->where('descricao', $request->get('descricao'))
                                                 ->where('peso', $request->get('peso'))
                                                 ->where('unidade_id', $request->get('unidade_id'))
                                                 ->first();
 
              //salvar
-            if(!isset($fornecedor_validate->id)) {
+            if(!isset($produtos_validate->id)) {
                 //aplicando os dados
                 $produtos->create($request->all());
                 $msg = 'Cadastro realizado com sucesso!';
@@ -99,7 +102,7 @@ class ProdutoController extends Controller
             }
         }
         //return redirect()->route('produto.index', ['titulo' => 'Produtos - Adicionar', 'unidades' => $unidades]);
-        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg, 'unidades' => $unidades]);
+        return view('app.produto.adicionar', ['titulo' => 'Produtos - Adicionar', 'msg' => $msg, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
 
     }
 
@@ -112,6 +115,7 @@ class ProdutoController extends Controller
     public function show(Produto $produto)
     {
         $unidades = $this->unidades();
+        //dd($produto);
         return view('app.produto.show', ['titulo' => $produto->nome,'produto' => $produto, 'unidades' => $unidades]);
     }
 
@@ -124,8 +128,8 @@ class ProdutoController extends Controller
     public function edit(Produto $produto)
     {
         $unidades = $this->unidades();
-        return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
-        //return view('app.produto.adicionar', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.edit', ['titulo' => 'Editar '.$produto->nome, 'produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -137,7 +141,7 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-
+        $fornecedores = Fornecedor::all();
         //regras de validação
         $regras = [
             'nome' => 'required|min:3|max:40',
@@ -164,7 +168,7 @@ class ProdutoController extends Controller
 
         $produto->update($request->all());
 
-        return redirect()->route('produto.show', ['produto' => $produto->id]);
+        return redirect()->route('produto.show', ['produto' => $produto->id, 'fornecedores' => $fornecedores]);
     }
 
     /**

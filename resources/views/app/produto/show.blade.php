@@ -62,6 +62,11 @@
 						<td>{{ $produto->produtoDetalhe->altura.' cm' ?? '' }}</td>
 					</tr>
 
+					<tr>
+						<td>Fornecedor: </td>
+						<td></td>
+					</tr>
+
 				</table>
 			</div>
 		</div>

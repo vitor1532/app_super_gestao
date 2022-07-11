@@ -31,6 +31,7 @@
 							<th></th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 
@@ -51,9 +52,18 @@
 										@endif
 									@endforeach
 								</td>
+								
 								<td>{{ $produto->itemDetalhe->comprimento ?? '' }}</td>
 								<td>{{ $produto->itemDetalhe->altura ?? '' }}</td>
 								<td>{{ $produto->itemDetalhe->largura ?? '' }}</td>
+
+								@if(isset($produto->itemDetalhe))
+									<td><a href="{{ route('produto-detalhe.edit', ['produto_detalhe' => $produto->id]) }}">Detalhes</a></td>
+								@else
+									<td><a href="{{ route('produto-detalhe.create', ['produto_id' => $produto->id]) }}">Detalhes</a></td>
+								@endif
+
+
 								<td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
 								<td><a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a></td>
 								<td>

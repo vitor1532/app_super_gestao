@@ -63,7 +63,7 @@ class ProdutoDetalheController extends Controller
         $request->validate($regras, $feedback);
 
         ProdutoDetalhe::create($request->all());
-        echo 'cadastro realizado com sucesso';
+        return redirect()->route('produto.index');
     }
 
     /**

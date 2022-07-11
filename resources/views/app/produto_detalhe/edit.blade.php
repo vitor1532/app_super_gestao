@@ -13,11 +13,11 @@
 		@include('app.produto.layouts._partials.sub_menu')
 
 		<div class="informacao-pagina">
-			{{ $produto_detalhe->toJson() }}
+			
 			<h4>Produto</h4>
 			<br>
 			<div>Nome: {{ $produto_detalhe->item->nome }}</div>
-			{{ $produto_detalhe->toJson() }}
+			
 			<br>
 			<div>Descrição: {{ $produto_detalhe->item->descricao }}</div>
 			<br>

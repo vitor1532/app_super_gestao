@@ -27,7 +27,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.cliente.create', ['titulo' => 'Cliente']);
     }
 
     /**
@@ -38,7 +38,26 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $regras = ['nome' => 'required|min:3|max:40'];
+         $feedback = [
+            'required' => 'O campo é obrigatório',
+            'min' => 'O campo deve ter um mínimo de 3 caracteres',
+            'nome.max' => 'O campo deve ter um máximo de 40 caracteres'
+        ];
+
+        //validação
+        $request->validate($regras, $feedback);
+
+        $cliente = new Cliente;
+
+        $cadastro = $cliente->create($request->all());
+
+        if($cadastro) {
+            $msg = 'Cadastro realizado com Sucesso!';
+            return view('app.cliente.create', ['titulo' => 'Cliente', 'msg' => $msg]);
+        }
+
     }
 
     /**

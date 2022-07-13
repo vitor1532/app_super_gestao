@@ -5,9 +5,9 @@
 @section('conteudo')
 
 	<div class="conteudo-pagina">
-			
+
 		<div class="titulo-pagina-2">
-			<p>{{$titulo}}</p>
+			<p>{{'Adicionar '.$titulo}}</p>
 		</div>
 
 		@include('app.cliente.layouts._partials.sub_menu')

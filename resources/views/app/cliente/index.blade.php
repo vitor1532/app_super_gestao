@@ -7,7 +7,7 @@
 	<div class="conteudo-pagina">
 			
 		<div class="titulo-pagina-2">
-			<p>{{'Listagem de '.$titulo }}</p>
+			<p>{{'Listagem de '.$titulo.'s' }}</p>
 		</div>
 
 		@include('app.cliente.layouts._partials.sub_menu')

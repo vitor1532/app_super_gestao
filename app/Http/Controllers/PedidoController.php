@@ -61,6 +61,11 @@ class PedidoController extends Controller
 
         if($create) {
             return redirect()->route('pedido.index');
+        } else {
+
+            $msg = 'Algo deu errado, tente novamente mais tarde';
+
+            return view ('app.pedido.create', ['titulo' => 'Pedido', 'clientes' => $clientes, 'msg' => $msg]);
         }
 
     }

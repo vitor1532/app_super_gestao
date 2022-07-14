@@ -15,7 +15,7 @@
 
 		@foreach($clientes as $cliente)
 			<option value="{{ $cliente->id }}"
-					@if(old('produto_id') == $cliente->id) {{ 'selected' }} @endif
+					@if(old('cliente_id') == $cliente->id) {{ 'selected' }} @endif
 					{{ ( $pedido->cliente_id ?? old('cliente_id') ) == $cliente->id ? 'selected' : '' }}>
 						{{ $cliente->nome }}
 			</option>

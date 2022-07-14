@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pedido;
+use App\Produto;
+use App\PedidoProduto;
 
 class PedidoProdutoController extends Controller
 {
@@ -21,9 +24,12 @@ class PedidoProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Pedido $pedido)
     {
-        //
+
+        $produtos = Produto::all();
+
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'titulo' => 'Pedido ao Produto', 'produtos' => $produtos]);
     }
 
     /**
@@ -32,9 +38,32 @@ class PedidoProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Pedido $pedido)
     {
-        //
+        $produtos = Produto::all();
+
+        $regras = ['produto_id' => 'required|exists:produtos,id|not_in:0'];
+
+        $feedback = [
+            'required' => 'O campo é obrigatório.',
+            'exists' => 'Selecione um produto válido',
+            'not_in' => 'Selecione uma opção válida'
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $valido = PedidoProduto::store($request);
+
+        if($valido) {
+            $msg = 'Produto '.$request->get('produto_id').' adicionado com sucesso ao pedido '.$pedido->id;
+
+            return view('app.pedido_produto.create', ['pedido' => $pedido, 'msg' => $msg, 'titulo' => 'Pedido ao Produto', 'produtos' => $produtos]);
+        } else {
+            $msg = 'Algo deu errado, tente novamente mais tarde';
+
+            return view('app.pedido_produto.create', ['pedido' => $pedido, 'titulo' => 'Pedido ao Produto', 'produtos' => $produtos, 'msg' => $msg]);
+        }
+
     }
 
     /**

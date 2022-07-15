@@ -50,11 +50,13 @@ class PedidoProdutoController extends Controller
             'not_in' => 'Selecione uma opção válida'
         ];
 
-        $request->validate($regras, $feedback);
+        $valido = $request->validate($regras, $feedback);
 
-        $valido = PedidoProduto::store($request);
+        
 
         if($valido) {
+            PedidoProduto::store($request);
+            
             $msg = 'Produto '.$request->get('produto_id').' adicionado com sucesso ao pedido '.$pedido->id;
 
             return view('app.pedido_produto.create', ['pedido' => $pedido, 'msg' => $msg, 'titulo' => 'Pedido ao Produto', 'produtos' => $produtos]);

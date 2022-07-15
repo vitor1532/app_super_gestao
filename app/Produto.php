@@ -24,4 +24,9 @@ class Produto extends Model
         return $this->belongsTo('App\Fornecedor', 'produto_id', 'id');
 
     }
+
+    public function pedido() {
+        return $this->belongsToMany('App\Pedido', 'pedidos_produtos');
+    }
+
 }

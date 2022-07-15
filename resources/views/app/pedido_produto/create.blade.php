@@ -18,6 +18,14 @@
 			<p>ID do Cliente : {{ $pedido->cliente_id }}</p>
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
+				<h4>Itens no pedido:</h4>
+				@foreach($pedido->produtos as $produto)
+
+				{{ $produto->nome }}
+				<hr>
+
+				@endforeach
+
 				@component('app.pedido_produto.layouts._components.form_create', ['produtos' => $produtos, 'pedido' => $pedido])
 				@endcomponent
 				{{ $msg ?? '' }}

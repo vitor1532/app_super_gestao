@@ -5,7 +5,7 @@
 	<input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
 
 	<select name="produto_id">
-		<option>--> Selecione o Produto <--</option>
+		<option value="0">--> Selecione o Produto <--</option>
 
 		@foreach($produtos as $produto)
 			<option value="{{ $produto->id }}"

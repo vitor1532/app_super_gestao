@@ -30,6 +30,7 @@ class ProdutoController extends Controller
 
         $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(15);
 
+
         return view('app.produto.index', ['titulo' => 'Produtos', 'produtos' => $produtos, 'request' => $request->all(), 'unidades' => $unidades]);
     }
 

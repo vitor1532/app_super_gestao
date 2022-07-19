@@ -13,6 +13,16 @@ class Pedido extends Model
     }
 
     public function produtos() {
+
         return $this->belongsToMany('App\Produto', 'pedidos_produtos');
     }
+
+    public static function groupId($id) {
+        return \DB::table('pedidos_produtos')
+            ->select(\DB::raw('COUNT(produto_id)'))
+            ->where('pedido_id','=',$id)
+            ->groupBy('produto_id')
+            ->get();
+    }
+
 }

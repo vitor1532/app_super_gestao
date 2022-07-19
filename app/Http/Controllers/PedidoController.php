@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pedido;
 use App\Cliente;
+use App\PedidoProduto;
 
 class PedidoController extends Controller
 {
@@ -78,7 +79,11 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        $pedido = Pedido::find($id);
+
+        $group = Pedido::groupId($id);
+
+        return view('app.pedido.show', ['titulo' => 'Visualizar Pedido', 'pedido' => $pedido, 'group' => $group]);
     }
 
     /**

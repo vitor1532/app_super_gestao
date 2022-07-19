@@ -54,6 +54,6 @@
 			</div>
 		</div>
 
-		{{dd($group)}}
+		{{--dd($group)--}}
 
 @endsection

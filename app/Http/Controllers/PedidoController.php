@@ -81,9 +81,15 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
 
-        $group = Pedido::groupId($id);
+        $pedido->produtos;
 
-        return view('app.pedido.show', ['titulo' => 'Visualizar Pedido', 'pedido' => $pedido, 'group' => $group]);
+        $pedido->produtos = Pedido::groupId($id);
+
+        
+
+        //dd($pedido->produtos);
+
+        return view('app.pedido.show', ['titulo' => 'Visualizar Pedido', 'pedido' => $pedido]);
     }
 
     /**

@@ -19,7 +19,8 @@ class Pedido extends Model
 
     public static function groupId($id) {
         return \DB::table('pedidos_produtos')
-            ->select(\DB::raw('COUNT(produto_id)'))
+            ->select(\DB::raw('(COUNT(produto_id)) AS qtd'), 'produto_id', 'produtos.nome')
+            ->leftJoin('produtos','pedidos_produtos.produto_id','=','produtos.id')
             ->where('pedido_id','=',$id)
             ->groupBy('produto_id')
             ->get();

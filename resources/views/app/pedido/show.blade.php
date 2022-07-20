@@ -20,29 +20,31 @@
 					
 					<tr>
 						<td>ID do pedido: </td>
-						<td>{{ $pedido->id }}</td>
+						<td style="text-align:center;">{{ $pedido->id }}</td>
 					</tr>
 
 					<tr>
 						<td>Nome do cliente: </td>
-						<td>{{ $pedido->cliente->nome }}</td>
+						<td style="text-align:center;">{{ $pedido->cliente->nome }}</td>
 					</tr>
 					{{--dd($group)--}}
 					<tr>
 						<td colspan="6">
-							<p>Produtos:</p>
+							<p><b>Produtos:</b></p>
 							<table border="1" style="margin: 20px;">
 								<thead>
 									<tr>
-										<th>Nome</th>
+										<th>Nome do Produto</th>
 										<th>Quantidade</th>
+										
 									</tr>
 								</thead>
 								<tbody>
 									@foreach($pedido->produtos as $produto)
 										<tr>
 											<td>{{ $produto->nome }}</td>
-											<td>{{ $group }}</td>
+											<td style="text-align:center;">{{ $produto->qtd }}</td>
+
 										</tr>
 									@endforeach
 								</tbody>

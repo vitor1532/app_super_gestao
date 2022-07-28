@@ -53,9 +53,9 @@
 									@endforeach
 								</td>
 								
-								<td>{{ $produto->itemDetalhe->comprimento ?? '' }}</td>
-								<td>{{ $produto->itemDetalhe->altura ?? '' }}</td>
-								<td>{{ $produto->itemDetalhe->largura ?? '' }}</td>
+								<td>{{ $produto->produtoDetalhe->comprimento ?? '' }}</td>
+								<td>{{ $produto->produtoDetalhe->altura ?? '' }}</td>
+								<td>{{ $produto->produtoDetalhe->largura ?? '' }}</td>
 
 								@if(isset($produto->itemDetalhe))
 									<td><a href="{{ route('produto-detalhe.edit', ['produto_detalhe' => $produto->id]) }}">Detalhes</a></td>
@@ -75,6 +75,17 @@
 								</td>
 										{{--<button type="submit">Excluir</button>--}}
 									
+							</tr>
+
+							<tr>
+								<td colspan="12">
+									<p>ID do Pedido(s)</p>
+									@foreach($produto->pedidos as $pedido)
+										<a href="{{ route('pedido.show', ['pedido' => $pedido->id]) }}">
+											Pedido: {{ $pedido->id }},
+										</a>
+									@endforeach
+								</td>
 							</tr>
 
 						@endforeach

@@ -19,12 +19,29 @@
 			<div style="width: 30%; margin-left: auto; margin-right: auto;">
 
 				<h4>Itens no pedido:</h4>
-				@foreach($pedido->produtos as $produto)
 
-				{{ $produto->nome }}
-				<hr>
+				<table width="100%" border="1">
+					
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+						</tr>
+					</thead>
 
-				@endforeach
+					<tbody>
+						@foreach($pedido->produtos as $produto)
+							<tr>
+								<td> {{ $produto->id }} </td>
+								<td> {{ $produto->nome }} </td>
+							</tr>
+						@endforeach
+						
+					</tbody>
+
+				</table>
+
+				{{$pedido}}
 
 				@component('app.pedido_produto.layouts._components.form_create', ['produtos' => $produtos, 'pedido' => $pedido])
 				@endcomponent

@@ -22,9 +22,10 @@ class Item extends Model
 
     }
 
-    public function fornecedor() {
+    /*public function fornecedor() {
 
         return $this->belongsTo('App\Fornecedor');
 
-    }
+    }*/
+
 }

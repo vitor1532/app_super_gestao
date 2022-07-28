@@ -21,11 +21,11 @@ class Produto extends Model
 
     public function fornecedor() {
 
-        return $this->belongsTo('App\Fornecedor', 'produto_id', 'id');
+        return $this->belongsTo('App\Fornecedor');
 
     }
 
-    public function pedido() {
+    public function pedidos() {
         return $this->belongsToMany('App\Pedido', 'pedidos_produtos');
     }
 

@@ -28,7 +28,9 @@ class ProdutoController extends Controller
     {
         $unidades = $this->unidades();
 
-        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(15);
+        $produtos = Produto::with(['produtoDetalhe', 'fornecedor', 'pedidos'])->paginate(15);
+        
+        //dd($produtos);
 
 
         return view('app.produto.index', ['titulo' => 'Produtos', 'produtos' => $produtos, 'request' => $request->all(), 'unidades' => $unidades]);

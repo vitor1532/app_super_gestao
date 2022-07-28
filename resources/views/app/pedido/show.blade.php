@@ -36,6 +36,7 @@
 									<tr>
 										<th>Nome do Produto</th>
 										<th>Quantidade</th>
+										<th>Fornecedor</th>
 										
 									</tr>
 								</thead>
@@ -44,7 +45,7 @@
 										<tr>
 											<td>{{ $produto->nome }}</td>
 											<td style="text-align:center;">{{ $produto->qtd }}</td>
-
+											<td>{{ $produto->fornecedor }}</td>
 										</tr>
 									@endforeach
 								</tbody>

@@ -42,12 +42,16 @@ class PedidoProdutoController extends Controller
     {
         $produtos = Produto::all();
 
-        $regras = ['produto_id' => 'required|exists:produtos,id|not_in:0'];
+        $regras = [
+            'produto_id' => 'required|exists:produtos,id|not_in:0',
+            'quantidade' => 'required|integer'
+        ];
 
         $feedback = [
             'required' => 'O campo é obrigatório.',
             'exists' => 'Selecione um produto válido',
-            'not_in' => 'Selecione uma opção válida'
+            'not_in' => 'Selecione uma opção válida',
+            'integer' => 'O campo deve ser preenchido apenas com números inteiros'
         ];
 
         $valido = $request->validate($regras, $feedback);

@@ -26,6 +26,7 @@
 						<tr>
 							<th>ID</th>
 							<th>Nome</th>
+							<th>Data de inclusão</th>
 						</tr>
 					</thead>
 
@@ -34,14 +35,13 @@
 							<tr>
 								<td> {{ $produto->id }} </td>
 								<td> {{ $produto->nome }} </td>
+								<td> {{ $produto->pivot->created_at }} </td>
 							</tr>
 						@endforeach
 						
 					</tbody>
 
 				</table>
-
-				{{$pedido}}
 
 				@component('app.pedido_produto.layouts._components.form_create', ['produtos' => $produtos, 'pedido' => $pedido])
 				@endcomponent

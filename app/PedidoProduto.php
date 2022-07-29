@@ -10,7 +10,7 @@ class PedidoProduto extends Model
 {
     protected $table = 'pedidos_produtos';
 
-    protected $fillable = ['pedido_id', 'produto_id'];
+    protected $fillable = ['pedido_id', 'produto_id', 'quantidade'];
 
     public static function store(Request $request) {
 

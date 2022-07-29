@@ -43,12 +43,12 @@ class PedidoProdutoController extends Controller
         $produtos = Produto::all();
 
         $regras = [
-            'produto_id' => 'required|exists:produtos,id|not_in:0',
+            'produto_id' => 'exists:produtos,id|not_in:0|required',
             'quantidade' => 'required|integer'
         ];
 
         $feedback = [
-            'required' => 'O campo é obrigatório.',
+            'required' => 'O campo :attribute é obrigatório.',
             'exists' => 'Selecione um produto válido',
             'not_in' => 'Selecione uma opção válida',
             'integer' => 'O campo deve ser preenchido apenas com números inteiros'
@@ -56,10 +56,12 @@ class PedidoProdutoController extends Controller
 
         $valido = $request->validate($regras, $feedback);
 
-        
-
+        //$pedido->produtos; carrega os registros do relacionamento
+        //$pedido->produtos(); obj
+        //$pedido->produtos->attach(<id_produto>, [<coluna> => <valor>])
         if($valido) {
             PedidoProduto::store($request);
+            //$pedido->produtos()->attach(['quantidade' => $request->get('quantidade')]);
             
             $msg = 'Produto '.$request->get('produto_id').' adicionado com sucesso ao pedido '.$pedido->id;
 
@@ -69,6 +71,7 @@ class PedidoProdutoController extends Controller
 
             return view('app.pedido_produto.create', ['pedido' => $pedido, 'titulo' => 'Pedido ao Produto', 'produtos' => $produtos, 'msg' => $msg]);
         }
+
 
     }
 

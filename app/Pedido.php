@@ -14,7 +14,7 @@ class Pedido extends Model
 
     public function produtos() {
 
-        return $this->belongsToMany('App\Produto', 'pedidos_produtos')->withTimestamps();
+        return $this->belongsToMany('App\Produto', 'pedidos_produtos')->withTimestamps()->withPivot('quantidade');
 
         //Belongs to many pode receber vários parametros:
         /*

@@ -58,7 +58,7 @@ class PedidoProdutoController extends Controller
 
         //$pedido->produtos; carrega os registros do relacionamento
         //$pedido->produtos(); obj
-        //$pedido->produtos->attach(<id_produto>, [<coluna> => <valor>])
+        //$pedido->produtos->attach(<id_relacional>, [<coluna> => <valor>])
         if($valido) {
             PedidoProduto::store($request);
             //$pedido->produtos()->attach(['quantidade' => $request->get('quantidade')]);

@@ -79,15 +79,13 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        $pedido = Pedido::find($id);
+        $pedido = Pedido::find($id);//->groupBy('produto_id');
 
         $pedido->produtos;
 
-        //$pedido->produtoz = Pedido::groupId($id);
+        $pedido->soma = Pedido::groupId($id);
 
-        
-
-        //$pedido->produtos->pivot->quantidade += $pedido->produtoz->qtd;
+        //$pedido->produtos->pivot->quantidade += $pedido->soma->qtd;
 
         
         //dd($pedido);

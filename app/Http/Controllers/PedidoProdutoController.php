@@ -28,8 +28,9 @@ class PedidoProdutoController extends Controller
     {
 
         $produtos = Produto::all();
+        $pedido->produtos;
 
-        return view('app.pedido_produto.create', ['pedido' => $pedido, 'titulo' => 'Pedido ao Produto', 'produtos' => $produtos]);
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'titulo' => 'Produto ao Pedido', 'produtos' => $produtos]);
     }
 
     /**
@@ -115,8 +116,24 @@ class PedidoProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pedido $pedido, Produto $produto, $pedido_produto)
     {
-        //
+        //dump($pedido);
+        //dd($produto);
+        //dd($pedido_produto);
+        
+        $deleted = PedidoProduto::where([
+            'id' => $pedido_produto,
+            'pedido_id' => $pedido->id,
+            'produto_id' => $produto->id
+        ])->delete();
+        $deleted;
+        if($deleted) {
+            return redirect()->route('pedido-produto.create', ['pedido' => $pedido]);
+        }else {
+            echo 'deu ruim, <a href="'.route('app.home').'"">Clique Aqui</a>';
+        }
+        
+        //return redirect()->route('profile');
     }
 }

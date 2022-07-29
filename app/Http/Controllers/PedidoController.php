@@ -83,11 +83,14 @@ class PedidoController extends Controller
 
         $pedido->produtos;
 
-        $pedido->produtos = Pedido::groupId($id);
+        //$pedido->produtoz = Pedido::groupId($id);
 
         
 
-        //dd($pedido->produtos);
+        //$pedido->produtos->pivot->quantidade += $pedido->produtoz->qtd;
+
+        
+        //dd($pedido);
 
         return view('app.pedido.show', ['titulo' => 'Visualizar Pedido', 'pedido' => $pedido]);
     }

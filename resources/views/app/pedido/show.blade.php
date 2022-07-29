@@ -44,8 +44,8 @@
 									@foreach($pedido->produtos as $produto)
 										<tr>
 											<td>{{ $produto->nome }}</td>
-											<td style="text-align:center;">{{ $produto->qtd }}</td>
-											<td>{{ $produto->fornecedor }}</td>
+											<td style="text-align:center;">{{ $produto->pivot->quantidade }}</td>
+											<td>{{ $produto->fornecedor->nome }}</td>
 										</tr>
 									@endforeach
 								</tbody>
